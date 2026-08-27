@@ -1,0 +1,181 @@
+﻿EmployeeID,FirstName,LastName,Gender,DepartmentID,JobTitle,StoreID,HireDate,EmployeeStatus
+E0001,Ibrahim,Sayed,Male,1,Sales Supervisor,S009,2025-07-08,Active
+E0002,Hassan,Farouk,Male,3,Accountant,,2020-10-07,Active
+E0003,Christine,Ibrahim,Female,8,E-Commerce Manager,,2018-05-05,Active
+E0004,Ahmed,Ibrahim,Male,6,Digital Marketing Analyst,,2021-10-22,Active
+E0005,Dina,Nabil,Female,7,Customer Service Supervisor,S006,2020-09-19,Active
+E0006,Christine,Ibrahim,Female,5,HR Specialist,,2022-11-22,Active
+E0007,Mariam,Mohamed,Female,4,BI Developer,,2021-09-26,Inactive
+E0008,Karim,Mahmoud,Male,5,HR Specialist,,2018-06-21,Active
+E0009,Omar,Fathy,Male,3,Finance Manager,,2026-03-25,Active
+E0010,Mona,Sayed,Female,8,E-Commerce Specialist,,2025-02-24,Active
+E0011,Mohamed,Farouk,Male,8,E-Commerce Manager,,2021-03-28,Inactive
+E0012,Mona,Mostafa,Female,3,Finance Manager,,2023-04-23,Active
+E0013,Yasmin,Ahmed,Female,5,Recruiter,,2022-10-10,Active
+E0014,Omar,Ibrahim,Male,4,Data Analyst,,2019-01-22,Active
+E0015,Reem,Fathy,Female,8,Marketplace Analyst,,2018-06-23,On Leave
+E0016,Mona,Ibrahim,Female,3,Finance Manager,,2021-08-05,Active
+E0017,Mostafa,Kamal,Male,4,BI Developer,,2023-05-19,Active
+E0018,Mahmoud,Youssef,Male,3,Financial Analyst,,2023-05-10,Active
+E0019,Mina,Hassan,Male,3,Finance Manager,,2021-06-29,Active
+E0020,Omar,Mohamed,Male,2,Inventory Controller,,2025-10-16,Active
+E0021,Mai,Kamal,Female,8,E-Commerce Manager,,2022-06-28,Active
+E0022,Amr,Nabil,Male,1,Store Manager,S009,2022-09-14,Active
+E0023,Mostafa,Gaber,Male,8,Marketplace Analyst,,2022-11-19,Active
+E0024,Nada,Sayed,Female,2,Supply Chain Analyst,,2025-05-10,Inactive
+E0025,Ibrahim,Fathy,Male,6,Marketing Manager,,2019-01-19,Active
+E0026,Nada,Youssef,Female,2,Supply Chain Analyst,,2018-09-14,Active
+E0027,Peter,Mohamed,Male,2,Warehouse Supervisor,,2019-05-26,Active
+E0028,Khaled,Ibrahim,Male,6,Marketing Specialist,,2021-05-09,Active
+E0029,Aya,Adel,Female,7,Customer Service Supervisor,S004,2024-06-23,Active
+E0030,Ibrahim,Mostafa,Male,8,Marketplace Analyst,,2026-02-01,Active
+E0031,Peter,Ahmed,Male,7,Customer Service Supervisor,,2018-07-27,Active
+E0032,Mina,Gaber,Male,2,Warehouse Supervisor,,2019-09-12,Active
+E0033,Peter,Farouk,Male,8,Marketplace Analyst,,2024-05-02,Active
+E0034,Ahmed,Mahmoud,Male,4,Systems Administrator,,2021-09-05,Active
+E0035,Amr,Gaber,Male,7,Customer Service Agent,S001,2022-04-10,Active
+E0036,Sara,Sayed,Female,7,Customer Service Supervisor,S011,2019-05-27,Active
+E0037,Mina,Sayed,Male,4,BI Developer,,2022-03-30,Active
+E0038,Mona,Kamal,Female,8,E-Commerce Specialist,,2020-03-17,Active
+E0039,Sara,Gaber,Female,3,Accountant,,2023-12-08,Active
+E0040,Nada,Ibrahim,Female,6,Marketing Manager,,2025-04-29,Active
+E0041,Omar,Gaber,Male,1,Sales Associate,S002,2018-12-15,Inactive
+E0042,Dina,Hassan,Female,3,Finance Manager,,2020-05-09,Active
+E0043,Ali,Gaber,Male,3,Financial Analyst,,2021-09-17,Active
+E0044,Reem,Fathy,Female,2,Warehouse Supervisor,,2021-05-22,Inactive
+E0045,Mariam,Mohamed,Female,8,E-Commerce Manager,,2022-03-13,Active
+E0046,Nour,Aziz,Female,5,Recruiter,,2023-11-08,Active
+E0047,Ali,Mahmoud,Male,2,Supply Chain Analyst,,2021-07-23,Active
+E0048,Hassan,Kamal,Male,6,Marketing Manager,,2024-01-02,Active
+E0049,Amr,Farouk,Male,1,Store Manager,,2018-08-24,Active
+E0050,Karim,Farouk,Male,7,Customer Service Agent,S003,2021-02-27,Active
+E0051,Youssef,Mostafa,Male,3,Financial Analyst,,2018-12-10,On Leave
+E0052,Ahmed,Mansour,Male,4,Data Analyst,,2024-09-06,Active
+E0053,Mohamed,Aziz,Male,7,Customer Service Supervisor,S010,2019-07-19,On Leave
+E0054,Ahmed,Aziz,Male,4,Data Analyst,,2021-02-18,Active
+E0055,Salma,Farouk,Female,4,Systems Administrator,,2023-01-28,Active
+E0056,Mostafa,Samir,Male,1,Store Manager,S009,2025-02-10,Active
+E0057,Salma,Mohamed,Female,8,E-Commerce Manager,,2019-01-26,Active
+E0058,Farah,Mansour,Female,8,Marketplace Analyst,,2019-06-19,Active
+E0059,Sara,Gaber,Female,6,Marketing Manager,,2019-04-17,Active
+E0060,Mostafa,Aziz,Male,7,Customer Service Supervisor,S004,2023-01-01,Active
+E0061,Mostafa,Sayed,Male,6,Digital Marketing Analyst,,2019-07-19,Active
+E0062,Yasmin,Ali,Female,5,HR Manager,,2020-03-15,Active
+E0063,Mina,Adel,Male,3,Finance Manager,,2021-05-01,Active
+E0064,Mina,Kamal,Male,8,E-Commerce Manager,,2020-12-30,Active
+E0065,Ali,Mostafa,Male,6,Marketing Specialist,,2018-08-15,Active
+E0066,Amr,Ahmed,Male,4,BI Developer,,2021-12-03,Active
+E0067,Mostafa,Ibrahim,Male,4,BI Developer,,2025-04-16,Active
+E0068,Sara,Mahmoud,Female,2,Warehouse Supervisor,,2021-11-03,Active
+E0069,Mostafa,Ahmed,Male,5,HR Manager,,2020-06-12,Active
+E0070,Tarek,Mansour,Male,2,Warehouse Supervisor,,2024-06-11,Active
+E0071,Mostafa,Sayed,Male,8,Marketplace Analyst,,2023-02-28,Active
+E0072,Mohamed,Ahmed,Male,3,Accountant,,2021-04-16,Active
+E0073,Mina,Adel,Male,1,Store Manager,S010,2018-05-18,On Leave
+E0074,Reem,Samir,Female,2,Inventory Controller,,2021-01-12,Active
+E0075,Ibrahim,Farouk,Male,2,Warehouse Supervisor,,2022-05-05,Active
+E0076,Omar,Mansour,Male,1,Sales Associate,S009,2021-07-26,Active
+E0077,Khaled,Ali,Male,1,Sales Associate,S011,2018-11-15,Active
+E0078,Sara,Sayed,Female,2,Warehouse Supervisor,,2019-11-26,Active
+E0079,Mona,Youssef,Female,6,Digital Marketing Analyst,,2022-11-25,Active
+E0080,Mohamed,Ibrahim,Male,5,HR Manager,,2024-06-21,Active
+E0081,Ahmed,Nabil,Male,4,Systems Administrator,,2024-07-01,Active
+E0082,Farah,Ahmed,Female,5,HR Specialist,,2020-02-03,On Leave
+E0083,Mina,Hassan,Male,4,Systems Administrator,,2021-11-26,Active
+E0084,Farah,Sayed,Female,1,Sales Associate,S005,2025-05-07,Active
+E0085,Karim,Fathy,Male,5,Recruiter,,2023-12-09,Inactive
+E0086,Amr,Mostafa,Male,8,Marketplace Analyst,,2024-08-05,Active
+E0087,Mona,Mansour,Female,7,Customer Service Agent,,2026-04-29,Active
+E0088,Mostafa,Ali,Male,6,Digital Marketing Analyst,,2023-02-02,Active
+E0089,Christine,Ahmed,Female,7,Customer Service Agent,S011,2019-01-30,Active
+E0090,Omar,Aziz,Male,2,Supply Chain Analyst,,2024-08-03,Active
+E0091,Mohamed,Aziz,Male,5,HR Manager,,2021-06-29,Inactive
+E0092,Rana,Hassan,Female,7,Customer Service Supervisor,,2026-06-13,Active
+E0093,Khaled,Ibrahim,Male,6,Digital Marketing Analyst,,2024-04-17,Active
+E0094,Peter,Mohamed,Male,8,E-Commerce Manager,,2020-02-05,Active
+E0095,Tarek,Hassan,Male,4,BI Developer,,2018-03-02,Active
+E0096,Nada,Mansour,Female,8,E-Commerce Manager,,2018-05-01,On Leave
+E0097,Karim,Samir,Male,4,Data Analyst,,2021-07-08,On Leave
+E0098,Omar,Gaber,Male,6,Marketing Manager,,2025-06-11,Active
+E0099,Nada,Mahmoud,Female,5,HR Specialist,,2025-03-02,Active
+E0100,Ali,Ali,Male,3,Finance Manager,,2022-06-05,Active
+E0101,Heba,Mansour,Female,5,Recruiter,,2023-05-07,Active
+E0102,Mostafa,Nabil,Male,5,Recruiter,,2024-01-16,Active
+E0103,Ahmed,Ali,Male,3,Accountant,,2019-08-24,Active
+E0104,Mostafa,Ibrahim,Male,3,Financial Analyst,,2018-12-29,Active
+E0105,Mai,Sayed,Female,8,E-Commerce Specialist,,2019-11-27,Active
+E0106,Rana,Mansour,Female,1,Sales Associate,S007,2021-02-04,Active
+E0107,Mostafa,Mostafa,Male,2,Warehouse Supervisor,,2023-01-02,Active
+E0108,Heba,Farouk,Female,8,E-Commerce Manager,,2019-02-06,Active
+E0109,Mona,Ali,Female,8,E-Commerce Specialist,,2021-06-17,Active
+E0110,Ahmed,Ali,Male,3,Accountant,,2025-12-20,On Leave
+E0111,Mina,Aziz,Male,6,Marketing Specialist,,2021-03-31,Active
+E0112,Farah,Kamal,Female,1,Sales Associate,,2018-03-28,Active
+E0113,Farah,Gaber,Female,8,Marketplace Analyst,,2026-04-25,Active
+E0114,Peter,Mahmoud,Male,6,Marketing Manager,,2022-08-10,Active
+E0115,Peter,Kamal,Male,7,Customer Service Agent,S012,2023-07-28,Active
+E0116,Khaled,Sayed,Male,7,Customer Service Supervisor,S007,2026-01-21,On Leave
+E0117,Tarek,Sayed,Male,6,Digital Marketing Analyst,,2019-09-12,Active
+E0118,Sara,Mahmoud,Female,2,Inventory Controller,,2024-05-29,Inactive
+E0119,Mariam,Kamal,Female,8,E-Commerce Specialist,,2018-12-22,Inactive
+E0120,Mai,Nabil,Female,1,Sales Associate,S007,2024-12-14,Active
+E0121,Amr,Sayed,Male,5,HR Manager,,2022-09-02,Active
+E0122,Sara,Aziz,Female,1,Store Manager,S003,2018-07-13,Active
+E0123,Yasmin,Fathy,Female,6,Digital Marketing Analyst,,2024-03-07,Active
+E0124,Ahmed,Farouk,Male,4,Data Analyst,,2025-05-11,Active
+E0125,Omar,Ahmed,Male,3,Financial Analyst,,2025-01-26,Active
+E0126,Youssef,Samir,Male,3,Finance Manager,,2019-03-28,Active
+E0127,Mohamed,Youssef,Male,5,Recruiter,,2024-05-22,Active
+E0128,Mahmoud,Ibrahim,Male,1,Sales Associate,S011,2020-10-31,Active
+E0129,Tarek,Ibrahim,Male,6,Marketing Manager,,2019-11-28,Active
+E0130,Tarek,Mohamed,Male,2,Inventory Controller,,2023-11-08,Active
+E0131,Peter,Mahmoud,Male,2,Inventory Controller,,2025-08-05,Active
+E0132,Sara,Ahmed,Female,6,Marketing Specialist,,2025-12-29,Active
+E0133,Rana,Adel,Female,1,Sales Supervisor,S003,2026-04-09,Active
+E0134,Karim,Mahmoud,Male,1,Sales Supervisor,S010,2018-05-29,Active
+E0135,Aya,Mansour,Female,6,Marketing Manager,,2022-11-28,Active
+E0136,Mahmoud,Hassan,Male,8,E-Commerce Manager,,2023-10-23,Active
+E0137,Mohamed,Farouk,Male,6,Marketing Specialist,,2025-02-19,Active
+E0138,Ibrahim,Gaber,Male,3,Accountant,,2022-07-02,Active
+E0139,Farah,Farouk,Female,6,Digital Marketing Analyst,,2022-12-21,Active
+E0140,Ibrahim,Adel,Male,1,Sales Supervisor,S009,2018-08-18,Active
+E0141,Reem,Ibrahim,Female,1,Sales Supervisor,S002,2021-05-06,Active
+E0142,Sara,Fathy,Female,8,E-Commerce Manager,,2022-11-18,Active
+E0143,Ibrahim,Samir,Male,2,Supply Chain Analyst,,2018-07-19,Active
+E0144,Mahmoud,Mohamed,Male,5,HR Specialist,,2019-10-31,Active
+E0145,Omar,Samir,Male,1,Sales Supervisor,S006,2021-12-25,Active
+E0146,Amr,Youssef,Male,4,BI Developer,,2022-10-16,Active
+E0147,Mohamed,Fathy,Male,5,HR Manager,,2019-07-08,Active
+E0148,Amr,Aziz,Male,2,Supply Chain Analyst,,2024-05-20,Active
+E0149,Ahmed,Mahmoud,Male,5,Recruiter,,2019-09-13,Active
+E0150,Khaled,Mansour,Male,8,E-Commerce Specialist,,2020-11-22,Active
+E0151,Mai,Gaber,Female,5,Recruiter,,2021-09-29,Active
+E0152,Aya,Adel,Female,5,HR Manager,,2018-04-30,Active
+E0153,Rana,Ibrahim,Female,5,Recruiter,,2018-03-28,Inactive
+E0154,Heba,Samir,Female,3,Accountant,,2019-10-25,Active
+E0155,Mona,Gaber,Female,1,Sales Associate,S010,2020-03-04,Active
+E0156,Peter,Sayed,Male,5,HR Specialist,,2024-06-27,Active
+E0157,Heba,Samir,Female,8,E-Commerce Specialist,,2020-08-30,On Leave
+E0158,Tarek,Ahmed,Male,2,Warehouse Supervisor,,2020-09-03,Active
+E0159,Hassan,Adel,Male,5,Recruiter,,2025-12-16,Active
+E0160,Christine,Youssef,Female,4,BI Developer,,2025-09-08,Active
+E0161,Mina,Mahmoud,Male,1,Sales Associate,S012,2023-10-31,Active
+E0162,Ibrahim,Nabil,Male,4,BI Developer,,2024-08-31,Active
+E0163,Mahmoud,Mohamed,Male,6,Marketing Specialist,,2025-04-10,Active
+E0164,Amr,Mostafa,Male,4,Systems Administrator,,2025-11-29,Active
+E0165,Ahmed,Ahmed,Male,7,Customer Service Agent,S011,2024-09-18,Active
+E0166,Rana,Hassan,Female,2,Warehouse Supervisor,,2023-02-26,Active
+E0167,Mahmoud,Ahmed,Male,2,Inventory Controller,,2022-09-12,Active
+E0168,Nour,Adel,Female,5,HR Specialist,,2026-04-15,Active
+E0169,Omar,Mahmoud,Male,2,Warehouse Supervisor,,2024-11-22,Active
+E0170,Khaled,Youssef,Male,4,BI Developer,,2023-06-25,Active
+E0171,Rana,Samir,Female,4,Data Analyst,,2025-02-02,Active
+E0172,Mona,Mostafa,Female,4,Systems Administrator,,2023-12-11,Active
+E0173,Karim,Nabil,Male,6,Marketing Specialist,,2018-11-01,On Leave
+E0174,Ahmed,Fathy,Male,2,Supply Chain Analyst,,2023-10-15,Active
+E0175,Mostafa,Mahmoud,Male,1,Sales Associate,S010,2024-08-06,Active
+E0176,Khaled,Mohamed,Male,4,BI Developer,,2021-02-28,Active
+E0177,Reem,Youssef,Female,2,Supply Chain Analyst,,2020-10-19,On Leave
+E0178,Yasmin,Ali,Female,8,Marketplace Analyst,,2023-05-07,Active
+E0179,Ahmed,Mahmoud,Male,7,Customer Service Supervisor,S010,2022-05-05,Active
+E0180,Mostafa,Youssef,Male,5,HR Manager,,2024-10-27,Active

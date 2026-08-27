@@ -1,0 +1,3 @@
+﻿WarehouseID,WarehouseName,City,Region,WarehouseStatus,CreatedAt,ModifiedAt
+WH01,Cairo Central Warehouse,Cairo,Greater Cairo,Active,2022-01-01 00:00:00,2026-07-31 23:59:59
+WH02,Alexandria Distribution Warehouse,Alexandria,Alexandria Region,Active,2022-01-01 00:00:00,2026-07-31 23:59:59

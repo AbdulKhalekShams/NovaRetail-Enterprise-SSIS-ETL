@@ -1,0 +1,13 @@
+﻿StoreID,StoreName,StoreType,City,Region,OpeningDate,StoreStatus,FloorAreaSqm,CreatedAt,ModifiedAt
+S001,Nasr City Branch,Retail Store,Cairo,Greater Cairo,2021-03-15,Active,920,2021-01-01 00:00:00,2026-07-31 23:59:59
+S002,New Cairo Branch,Flagship Store,Cairo,Greater Cairo,2022-06-10,Active,1350,2021-01-01 00:00:00,2026-07-31 23:59:59
+S003,Maadi Branch,Retail Store,Cairo,Greater Cairo,2020-11-05,Active,780,2021-01-01 00:00:00,2026-07-31 23:59:59
+S004,Giza Dokki Branch,Retail Store,Giza,Greater Cairo,2019-08-22,Active,810,2021-01-01 00:00:00,2026-07-31 23:59:59
+S005,6th October Branch,Outlet,Giza,Greater Cairo,2021-12-01,Active,1100,2021-01-01 00:00:00,2026-07-31 23:59:59
+S006,Alexandria Smouha,Retail Store,Alexandria,Alexandria Region,2020-02-17,Active,870,2021-01-01 00:00:00,2026-07-31 23:59:59
+S007,Alexandria City Centre,Flagship Store,Alexandria,Alexandria Region,2023-01-20,Active,1450,2021-01-01 00:00:00,2026-07-31 23:59:59
+S008,Mansoura Branch,Retail Store,Mansoura,Delta,2022-03-12,Active,760,2021-01-01 00:00:00,2026-07-31 23:59:59
+S009,Tanta Branch,Retail Store,Tanta,Delta,2022-09-18,Active,720,2021-01-01 00:00:00,2026-07-31 23:59:59
+S010,Zagazig Branch,Retail Store,Zagazig,Delta,2023-05-04,Active,690,2021-01-01 00:00:00,2026-07-31 23:59:59
+S011,Ismailia Branch,Retail Store,Ismailia,Canal,2023-08-16,Active,710,2021-01-01 00:00:00,2026-07-31 23:59:59
+S012,Suez Branch,Retail Store,Suez,Canal,2024-01-25,Active,680,2021-01-01 00:00:00,2026-07-31 23:59:59

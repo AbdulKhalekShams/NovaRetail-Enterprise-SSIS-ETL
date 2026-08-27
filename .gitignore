@@ -1,0 +1,42 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build outputs
+bin/
+obj/
+Debug/
+Release/
+
+# SSIS generated / deployment artifacts
+*.ispac
+*.dtproj.user
+*.dtsConfig
+
+# Local database / backup files
+*.mdf
+*.ldf
+*.bak
+*.trn
+
+# Secrets / environment files
+.env
+.env.*
+secrets.json
+appsettings.Development.json
+
+# Logs / temp
+*.log
+*.tmp
+*.temp
+~$*
+Thumbs.db
+.DS_Store
+
+# Large generated data
+data/raw/
+data/full/
+*.zip

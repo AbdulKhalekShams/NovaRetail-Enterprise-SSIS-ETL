@@ -1,0 +1,1344 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="8/14/2026 7:38:47 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="D5"
+  DTS:CreatorName="MCG\Abdelkhalek.Shams"
+  DTS:DTSID="{85716D82-DD04-47AD-AC0B-B26639320704}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="17.0.1016.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="12_Load_POS_Stores_Staging"
+  DTS:PackageType="5"
+  DTS:VersionBuild="32"
+  DTS:VersionGUID="{8D3E9832-86FC-418E-B95C-CBA386A2E5E1}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[CM_SRC_POS]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{77B0B188-1C51-4CCE-8855-BC33B74AF703}"
+      DTS:ObjectName="CM_SRC_POS">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=D5;Initial Catalog=NovaRetail_POS;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package-{77B0B188-1C51-4CCE-8855-BC33B74AF703}D5.NovaRetail_POS;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[CM_STG]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{B5EF5144-6647-475E-917D-7FF5A594C94F}"
+      DTS:ObjectName="CM_STG">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=D5;Initial Catalog=NovaRetail_Staging;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package-{B5EF5144-6647-475E-917D-7FF5A594C94F}D5.NovaRetail_Staging;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{47B8CE85-5867-4138-9C1C-CAA8398EBF02}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="BatchID">
+      <DTS:VariableValue
+        DTS:DataType="20">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{877C8DD5-A359-4029-9C92-E628A57DCCF0}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="ExtractedRowCount">
+      <DTS:VariableValue
+        DTS:DataType="20">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\SEQ_Process_POS_Stores"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{763021B2-234B-4BEB-A23D-672BBA6031CF}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SEQ_Process_POS_Stores">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{2361FB72-E270-439C-AC1B-2797A92E3FE0}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="DFT_Extract_POS_Stores"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\CNT_Extracted_Stores"
+                  componentClassID="Microsoft.RowCount"
+                  contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
+                  name="CNT_Extracted_Stores">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable to hold the row count."
+                      name="VariableName">User::ExtractedRowCount</property>
+                  </properties>
+                  <inputs>
+                    <input
+                      refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\CNT_Extracted_Stores.Inputs[Row Count Input 1]"
+                      hasSideEffects="true"
+                      name="Row Count Input 1">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\CNT_Extracted_Stores.Outputs[Row Count Output 1]"
+                      name="Row Count Output 1"
+                      synchronousInputId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\CNT_Extracted_Stores.Inputs[Row Count Input 1]">
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DRV_ETL_Metadata"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                  name="DRV_ETL_Metadata"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DRV_ETL_Metadata.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DRV_ETL_Metadata.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DRV_ETL_Metadata.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DRV_ETL_Metadata.Outputs[Derived Column Output].Columns[SourceSystem]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="30"
+                          lineageId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DRV_ETL_Metadata.Outputs[Derived Column Output].Columns[SourceSystem]"
+                          name="SourceSystem"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">(DT_STR,30,1252)"POS"</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_STR,30,1252)"POS"</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DRV_ETL_Metadata.Outputs[Derived Column Output].Columns[ExtractedAt]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DRV_ETL_Metadata.Outputs[Derived Column Output].Columns[ExtractedAt]"
+                          name="ExtractedAt"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[GETDATE]()</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">GETDATE()</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DRV_ETL_Metadata.Outputs[Derived Column Output].Columns[BatchID]"
+                          dataType="i8"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DRV_ETL_Metadata.Outputs[Derived Column Output].Columns[BatchID]"
+                          name="BatchID"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">@[User::BatchID]</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">@[User::BatchID]</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DRV_ETL_Metadata.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DRV_ETL_Metadata.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DRV_ETL_Metadata.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DRV_ETL_Metadata.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DRV_ETL_Metadata.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DRV_ETL_Metadata.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DST_STG_Stores"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="DST_STG_Stores"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[stg_Stores]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DST_STG_Stores.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[CM_STG]"
+                      connectionManagerRefId="Package.ConnectionManagers[CM_STG]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DST_STG_Stores.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DST_STG_Stores.Inputs[OLE DB Destination Input].Columns[ModifiedAt]"
+                          cachedDataType="wstr"
+                          cachedLength="19"
+                          cachedName="ModifiedAt"
+                          externalMetadataColumnId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DST_STG_Stores.Inputs[OLE DB Destination Input].ExternalColumns[ModifiedAt]"
+                          lineageId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Output].Columns[ModifiedAt]" />
+                        <inputColumn
+                          refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DST_STG_Stores.Inputs[OLE DB Destination Input].Columns[BatchID]"
+                          cachedDataType="i8"
+                          cachedName="BatchID"
+                          externalMetadataColumnId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DST_STG_Stores.Inputs[OLE DB Destination Input].ExternalColumns[BatchID]"
+                          lineageId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DRV_ETL_Metadata.Outputs[Derived Column Output].Columns[BatchID]" />
+                        <inputColumn
+                          refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DST_STG_Stores.Inputs[OLE DB Destination Input].Columns[ExtractedAt]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="ExtractedAt"
+                          externalMetadataColumnId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DST_STG_Stores.Inputs[OLE DB Destination Input].ExternalColumns[ExtractedAt]"
+                          lineageId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DRV_ETL_Metadata.Outputs[Derived Column Output].Columns[ExtractedAt]" />
+                        <inputColumn
+                          refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DST_STG_Stores.Inputs[OLE DB Destination Input].Columns[SourceSystem]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="30"
+                          cachedName="SourceSystem"
+                          externalMetadataColumnId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DST_STG_Stores.Inputs[OLE DB Destination Input].ExternalColumns[SourceSystem]"
+                          lineageId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DRV_ETL_Metadata.Outputs[Derived Column Output].Columns[SourceSystem]" />
+                        <inputColumn
+                          refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DST_STG_Stores.Inputs[OLE DB Destination Input].Columns[FloorAreaSqm]"
+                          cachedDataType="i4"
+                          cachedName="FloorAreaSqm"
+                          externalMetadataColumnId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DST_STG_Stores.Inputs[OLE DB Destination Input].ExternalColumns[FloorAreaSqm]"
+                          lineageId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Output].Columns[FloorAreaSqm]" />
+                        <inputColumn
+                          refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DST_STG_Stores.Inputs[OLE DB Destination Input].Columns[StoreStatus]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="30"
+                          cachedName="StoreStatus"
+                          externalMetadataColumnId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DST_STG_Stores.Inputs[OLE DB Destination Input].ExternalColumns[StoreStatus]"
+                          lineageId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Output].Columns[StoreStatus]" />
+                        <inputColumn
+                          refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DST_STG_Stores.Inputs[OLE DB Destination Input].Columns[OpeningDate]"
+                          cachedDataType="wstr"
+                          cachedLength="10"
+                          cachedName="OpeningDate"
+                          externalMetadataColumnId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DST_STG_Stores.Inputs[OLE DB Destination Input].ExternalColumns[OpeningDate]"
+                          lineageId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Output].Columns[OpeningDate]" />
+                        <inputColumn
+                          refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DST_STG_Stores.Inputs[OLE DB Destination Input].Columns[Region]"
+                          cachedDataType="wstr"
+                          cachedLength="80"
+                          cachedName="Region"
+                          externalMetadataColumnId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DST_STG_Stores.Inputs[OLE DB Destination Input].ExternalColumns[Region]"
+                          lineageId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Output].Columns[Region]" />
+                        <inputColumn
+                          refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DST_STG_Stores.Inputs[OLE DB Destination Input].Columns[City]"
+                          cachedDataType="wstr"
+                          cachedLength="80"
+                          cachedName="City"
+                          externalMetadataColumnId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DST_STG_Stores.Inputs[OLE DB Destination Input].ExternalColumns[City]"
+                          lineageId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Output].Columns[City]" />
+                        <inputColumn
+                          refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DST_STG_Stores.Inputs[OLE DB Destination Input].Columns[StoreType]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="30"
+                          cachedName="StoreType"
+                          externalMetadataColumnId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DST_STG_Stores.Inputs[OLE DB Destination Input].ExternalColumns[StoreType]"
+                          lineageId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Output].Columns[StoreType]" />
+                        <inputColumn
+                          refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DST_STG_Stores.Inputs[OLE DB Destination Input].Columns[StoreName]"
+                          cachedDataType="wstr"
+                          cachedLength="150"
+                          cachedName="StoreName"
+                          externalMetadataColumnId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DST_STG_Stores.Inputs[OLE DB Destination Input].ExternalColumns[StoreName]"
+                          lineageId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Output].Columns[StoreName]" />
+                        <inputColumn
+                          refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DST_STG_Stores.Inputs[OLE DB Destination Input].Columns[StoreID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="10"
+                          cachedName="StoreID"
+                          externalMetadataColumnId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DST_STG_Stores.Inputs[OLE DB Destination Input].ExternalColumns[StoreID]"
+                          lineageId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Output].Columns[StoreID]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DST_STG_Stores.Inputs[OLE DB Destination Input].ExternalColumns[ModifiedAt]"
+                          dataType="wstr"
+                          length="19"
+                          name="ModifiedAt" />
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DST_STG_Stores.Inputs[OLE DB Destination Input].ExternalColumns[BatchID]"
+                          dataType="i8"
+                          name="BatchID" />
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DST_STG_Stores.Inputs[OLE DB Destination Input].ExternalColumns[ExtractedAt]"
+                          dataType="wstr"
+                          length="19"
+                          name="ExtractedAt" />
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DST_STG_Stores.Inputs[OLE DB Destination Input].ExternalColumns[SourceSystem]"
+                          codePage="1252"
+                          dataType="str"
+                          length="30"
+                          name="SourceSystem" />
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DST_STG_Stores.Inputs[OLE DB Destination Input].ExternalColumns[StoreID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="10"
+                          name="StoreID" />
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DST_STG_Stores.Inputs[OLE DB Destination Input].ExternalColumns[StoreName]"
+                          dataType="wstr"
+                          length="150"
+                          name="StoreName" />
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DST_STG_Stores.Inputs[OLE DB Destination Input].ExternalColumns[StoreType]"
+                          codePage="1252"
+                          dataType="str"
+                          length="30"
+                          name="StoreType" />
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DST_STG_Stores.Inputs[OLE DB Destination Input].ExternalColumns[City]"
+                          dataType="wstr"
+                          length="80"
+                          name="City" />
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DST_STG_Stores.Inputs[OLE DB Destination Input].ExternalColumns[Region]"
+                          dataType="wstr"
+                          length="80"
+                          name="Region" />
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DST_STG_Stores.Inputs[OLE DB Destination Input].ExternalColumns[OpeningDate]"
+                          dataType="wstr"
+                          length="10"
+                          name="OpeningDate" />
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DST_STG_Stores.Inputs[OLE DB Destination Input].ExternalColumns[StoreStatus]"
+                          codePage="1252"
+                          dataType="str"
+                          length="30"
+                          name="StoreStatus" />
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DST_STG_Stores.Inputs[OLE DB Destination Input].ExternalColumns[FloorAreaSqm]"
+                          dataType="i4"
+                          name="FloorAreaSqm" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DST_STG_Stores.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DST_STG_Stores.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DST_STG_Stores.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DST_STG_Stores.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DST_STG_Stores.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DST_STG_Stores.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="SRC_POS_Stores"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[Customers]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+    StoreID,
+    StoreName,
+    StoreType,
+    City,
+    Region,
+    OpeningDate,
+    StoreStatus,
+    FloorAreaSqm,
+    ModifiedAt
+FROM dbo.Stores;</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[CM_SRC_POS]"
+                      connectionManagerRefId="Package.ConnectionManagers[CM_SRC_POS]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Output].Columns[ModifiedAt]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Output].ExternalColumns[ModifiedAt]"
+                          length="19"
+                          lineageId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Output].Columns[ModifiedAt]"
+                          name="ModifiedAt"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Output].Columns[StoreID]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Output].ExternalColumns[StoreID]"
+                          length="10"
+                          lineageId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Output].Columns[StoreID]"
+                          name="StoreID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Output].Columns[StoreName]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Output].ExternalColumns[StoreName]"
+                          length="150"
+                          lineageId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Output].Columns[StoreName]"
+                          name="StoreName"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Output].Columns[StoreType]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Output].ExternalColumns[StoreType]"
+                          length="30"
+                          lineageId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Output].Columns[StoreType]"
+                          name="StoreType"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Output].Columns[City]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Output].ExternalColumns[City]"
+                          length="80"
+                          lineageId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Output].Columns[City]"
+                          name="City"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Output].Columns[Region]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Output].ExternalColumns[Region]"
+                          length="80"
+                          lineageId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Output].Columns[Region]"
+                          name="Region"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Output].Columns[OpeningDate]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Output].ExternalColumns[OpeningDate]"
+                          length="10"
+                          lineageId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Output].Columns[OpeningDate]"
+                          name="OpeningDate"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Output].Columns[StoreStatus]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Output].ExternalColumns[StoreStatus]"
+                          length="30"
+                          lineageId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Output].Columns[StoreStatus]"
+                          name="StoreStatus"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Output].Columns[FloorAreaSqm]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Output].ExternalColumns[FloorAreaSqm]"
+                          lineageId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Output].Columns[FloorAreaSqm]"
+                          name="FloorAreaSqm"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Output].ExternalColumns[ModifiedAt]"
+                          dataType="wstr"
+                          length="19"
+                          name="ModifiedAt" />
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Output].ExternalColumns[StoreID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="10"
+                          name="StoreID" />
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Output].ExternalColumns[StoreName]"
+                          dataType="wstr"
+                          length="150"
+                          name="StoreName" />
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Output].ExternalColumns[StoreType]"
+                          codePage="1252"
+                          dataType="str"
+                          length="30"
+                          name="StoreType" />
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Output].ExternalColumns[City]"
+                          dataType="wstr"
+                          length="80"
+                          name="City" />
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Output].ExternalColumns[Region]"
+                          dataType="wstr"
+                          length="80"
+                          name="Region" />
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Output].ExternalColumns[OpeningDate]"
+                          dataType="wstr"
+                          length="10"
+                          name="OpeningDate" />
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Output].ExternalColumns[StoreStatus]"
+                          codePage="1252"
+                          dataType="str"
+                          length="30"
+                          name="StoreStatus" />
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Output].ExternalColumns[FloorAreaSqm]"
+                          dataType="i4"
+                          name="FloorAreaSqm" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Error Output].Columns[StoreID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="10"
+                          lineageId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Error Output].Columns[StoreID]"
+                          name="StoreID" />
+                        <outputColumn
+                          refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Error Output].Columns[StoreName]"
+                          dataType="wstr"
+                          length="150"
+                          lineageId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Error Output].Columns[StoreName]"
+                          name="StoreName" />
+                        <outputColumn
+                          refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Error Output].Columns[StoreType]"
+                          codePage="1252"
+                          dataType="str"
+                          length="30"
+                          lineageId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Error Output].Columns[StoreType]"
+                          name="StoreType" />
+                        <outputColumn
+                          refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Error Output].Columns[City]"
+                          dataType="wstr"
+                          length="80"
+                          lineageId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Error Output].Columns[City]"
+                          name="City" />
+                        <outputColumn
+                          refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Error Output].Columns[Region]"
+                          dataType="wstr"
+                          length="80"
+                          lineageId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Error Output].Columns[Region]"
+                          name="Region" />
+                        <outputColumn
+                          refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Error Output].Columns[OpeningDate]"
+                          dataType="wstr"
+                          length="10"
+                          lineageId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Error Output].Columns[OpeningDate]"
+                          name="OpeningDate" />
+                        <outputColumn
+                          refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Error Output].Columns[StoreStatus]"
+                          codePage="1252"
+                          dataType="str"
+                          length="30"
+                          lineageId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Error Output].Columns[StoreStatus]"
+                          name="StoreStatus" />
+                        <outputColumn
+                          refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Error Output].Columns[FloorAreaSqm]"
+                          dataType="i4"
+                          lineageId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Error Output].Columns[FloorAreaSqm]"
+                          name="FloorAreaSqm" />
+                        <outputColumn
+                          refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Error Output].Columns[ModifiedAt]"
+                          dataType="wstr"
+                          length="19"
+                          lineageId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Error Output].Columns[ModifiedAt]"
+                          name="ModifiedAt" />
+                        <outputColumn
+                          refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores.Paths[Derived Column Output]"
+                  endId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\CNT_Extracted_Stores.Inputs[Row Count Input 1]"
+                  name="Derived Column Output"
+                  startId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DRV_ETL_Metadata.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores.Paths[OLE DB Source Output]"
+                  endId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DRV_ETL_Metadata.Inputs[Derived Column Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores.Outputs[OLE DB Source Output]" />
+                <path
+                  refId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores.Paths[Row Count Output 1]"
+                  endId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DST_STG_Stores.Inputs[OLE DB Destination Input]"
+                  name="Row Count Output 1"
+                  startId="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\CNT_Extracted_Stores.Outputs[Row Count Output 1]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SEQ_Process_POS_Stores\SQL_Clear_STG_Stores"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{69096D20-0319-4821-B033-90FC8F1C48B2}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL_Clear_STG_Stores"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{B5EF5144-6647-475E-917D-7FF5A594C94F}"
+              SQLTask:SqlStatementSource="TRUNCATE TABLE dbo.stg_Stores;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\SEQ_Process_POS_Stores.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{635F31C5-9F6E-4D88-8A10-1C86E54F9D05}"
+          DTS:From="Package\SEQ_Process_POS_Stores\SQL_Clear_STG_Stores"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL_End_Batch_Failed"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{81C84511-F5EB-41CE-9646-0661F11E33C2}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL_End_Batch_Failed"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{B5EF5144-6647-475E-917D-7FF5A594C94F}"
+          SQLTask:SqlStatementSource="UPDATE dbo.ETL_Batch&#xA;SET&#xA;    EndTime = GETDATE(),&#xA;    Status  = 'Failed'&#xA;WHERE BatchID = ?;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::BatchID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL_End_Batch_Success"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{2A0C0D2C-B9E6-4C84-83F0-08FCFBD90067}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL_End_Batch_Success"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{B5EF5144-6647-475E-917D-7FF5A594C94F}"
+          SQLTask:SqlStatementSource="UPDATE dbo.ETL_Batch&#xA;SET&#xA;    EndTime       = GETDATE(),&#xA;    Status        = 'Success',&#xA;    ExtractedRows = ?,&#xA;    LoadedRows    = ?&#xA;WHERE BatchID     = ?;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::ExtractedRowCount"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="User::ExtractedRowCount"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="2"
+            SQLTask:DtsVariableName="User::BatchID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL_Start_Batch"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{170F5388-70A8-4468-ABE4-9D79CD875CF7}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL_Start_Batch"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{B5EF5144-6647-475E-917D-7FF5A594C94F}"
+          SQLTask:SqlStatementSource="INSERT INTO dbo.ETL_Batch&#xA;(&#xA;    PackageName,&#xA;    SourceSystem,&#xA;    StartTime,&#xA;    Status&#xA;)&#xA;VALUES&#xA;(&#xA;    '12_Load_POS_Stores_Staging',&#xA;    'POS',&#xA;    GETDATE(),&#xA;    'Running'&#xA;);&#xA;&#xA;SELECT CAST(SCOPE_IDENTITY() AS BIGINT) AS BatchID;"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::BatchID" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{6D3F9810-E05B-412E-9BC9-E1231F1ACD72}"
+      DTS:From="Package\SQL_Start_Batch"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\SEQ_Process_POS_Stores" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{9F8A6473-15CB-442A-9CAB-DD83F462B1E9}"
+      DTS:From="Package\SEQ_Process_POS_Stores"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\SQL_End_Batch_Success" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{105473F8-A291-4064-8789-937FDCDBDD30}"
+      DTS:From="Package\SEQ_Process_POS_Stores"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\SQL_End_Batch_Failed"
+      DTS:Value="1" />
+  </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{1CD433A5-6FA1-4804-B2EE-438AB4CEDE4A}"
+      DTS:EventID="3145773"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{97767BF7-61B9-4F37-96FE-A4F0C1177B65}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\SQL_Log_Error"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{2BFEDB04-37E8-4730-8D1F-9EE9D2252A9A}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL_Log_Error"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{B5EF5144-6647-475E-917D-7FF5A594C94F}"
+              SQLTask:SqlStatementSource="INSERT INTO dbo.ETL_Error_Log&#xA;(&#xA;    BatchID,&#xA;    PackageName,&#xA;    SourceName,&#xA;    ErrorCode,&#xA;    ErrorDescription,&#xA;    ErrorTime&#xA;)&#xA;VALUES&#xA;(&#xA;    ?,&#xA;    ?,&#xA;    ?,&#xA;    ?,&#xA;    ?,&#xA;    GETDATE()&#xA;);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::BatchID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="System::SourceName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="3"
+                SQLTask:DtsVariableName="System::ErrorCode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="4"
+                SQLTask:DtsVariableName="System::ErrorDescription"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="196.8,41.6"
+          Id="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores"
+          TopLeft="13.3571428738687,107.205882263792" />
+        <NodeLayout
+          Size="187.2,41.6"
+          Id="Package\SEQ_Process_POS_Stores\SQL_Clear_STG_Stores"
+          TopLeft="14.7857143054811,20.0294117519703" />
+        <EdgeLayout
+          Id="Package\SEQ_Process_POS_Stores.PrecedenceConstraints[Constraint]"
+          TopLeft="110.071428589675,61.6294117519703">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,45.5764705118217"
+              Start="0,0"
+              End="0,38.0764705118217">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38.0764705118217" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="244,204"
+          Size="244,247.2"
+          Id="Package\SEQ_Process_POS_Stores"
+          TopLeft="229.285714773803,48.9411764276893" />
+        <NodeLayout
+          Size="186.4,41.6"
+          Id="Package\SQL_End_Batch_Failed"
+          TopLeft="542.857144012743,217.176470397872" />
+        <NodeLayout
+          Size="196,41.6"
+          Id="Package\SQL_End_Batch_Success"
+          TopLeft="531.428572559843,81.0588234583606" />
+        <NodeLayout
+          Size="157.6,41.6"
+          Id="Package\SQL_Start_Batch"
+          TopLeft="22.1428571899933,42.8235293742282" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="179.742857189993,63.6235293742282">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="49.5428575838097,108.917647053461"
+              Start="0,0"
+              End="42.0428575838097,108.917647053461">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="20.7714287919048,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="20.7714287919048,0"
+                    Point2="24.7714287919048,0"
+                    Point3="24.7714287919048,4" />
+                  <mssgle:LineSegment
+                    End="24.7714287919048,104.917647053461" />
+                  <mssgle:CubicBezierSegment
+                    Point1="24.7714287919048,104.917647053461"
+                    Point2="24.7714287919048,108.917647053461"
+                    Point3="28.7714287919048,108.917647053461" />
+                  <mssgle:LineSegment
+                    End="42.0428575838097,108.917647053461" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="473.285714773803,132.674509761023">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="58.1428577860401,-30.815686302662"
+              Start="0,0"
+              End="50.6428577860401,-30.815686302662">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="19.4814885463879,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="19.4814885463879,0"
+                    Point2="23.4814885463879,0"
+                    Point3="23.4814885463879,-4" />
+                  <mssgle:LineSegment
+                    End="23.4814885463879,-26.815686302662" />
+                  <mssgle:CubicBezierSegment
+                    Point1="23.4814885463879,-26.815686302662"
+                    Point2="23.4814885463879,-30.815686302662"
+                    Point3="27.4814885463879,-30.815686302662" />
+                  <mssgle:LineSegment
+                    End="50.6428577860401,-30.815686302662" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="473.285714773803,212.407843094356">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="69.57142923894,25.5686273035161"
+              Start="0,0"
+              End="62.07142923894,25.5686273035161">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="24.0970145093597,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="24.0970145093597,0"
+                    Point2="28.0970145093597,0"
+                    Point3="28.0970145093597,4" />
+                  <mssgle:LineSegment
+                    End="28.0970145093597,21.5686273035161" />
+                  <mssgle:CubicBezierSegment
+                    Point1="28.0970145093597,21.5686273035161"
+                    Point2="28.0970145093597,25.5686273035161"
+                    Point3="32.0970145093597,25.5686273035161" />
+                  <mssgle:LineSegment
+                    End="62.07142923894,25.5686273035161" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="12.8556668531097,-15.7490234375,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="148.8,41.6"
+          Id="Package.EventHandlers[OnError]\SQL_Log_Error"
+          TopLeft="249.99999627471,70.9999989420176" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <TaskHost
+    design-time-name="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="171.2,41.6"
+          Id="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DRV_ETL_Metadata"
+          TopLeft="120.000000255449,103.99999990884" />
+        <NodeLayout
+          Size="157.6,41.6"
+          Id="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores"
+          TopLeft="250.000000532184,6.88235293514382" />
+        <NodeLayout
+          Size="183.2,41.6"
+          Id="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\CNT_Extracted_Stores"
+          TopLeft="357.142857903121,175.117646905326" />
+        <NodeLayout
+          Size="158.4,41.6"
+          Id="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DST_STG_Stores"
+          TopLeft="145.000000308667,253.882352718639" />
+        <EdgeLayout
+          Id="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores.Paths[OLE DB Source Output]"
+          TopLeft="328.800000532184,48.4823529351438">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-123.200000276735,55.5176469736962"
+              Start="0,0"
+              End="-123.200000276735,48.0176469736962">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.7588234868481" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,23.7588234868481"
+                    Point2="0,27.7588234868481"
+                    Point3="-4,27.7588234868481" />
+                  <mssgle:LineSegment
+                    End="-119.200000276735,27.7588234868481" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-119.200000276735,27.7588234868481"
+                    Point2="-123.200000276735,27.7588234868481"
+                    Point3="-123.200000276735,31.7588234868481" />
+                  <mssgle:LineSegment
+                    End="-123.200000276735,48.0176469736962" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores.Paths[Derived Column Output]"
+          TopLeft="205.600000255449,145.59999990884">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="243.142857647672,29.517646996486"
+              Start="0,0"
+              End="243.142857647672,22.017646996486">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,10.758823498243" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,10.758823498243"
+                    Point2="0,14.758823498243"
+                    Point3="4,14.758823498243" />
+                  <mssgle:LineSegment
+                    End="239.142857647672,14.758823498243" />
+                  <mssgle:CubicBezierSegment
+                    Point1="239.142857647672,14.758823498243"
+                    Point2="243.142857647672,14.758823498243"
+                    Point3="243.142857647672,18.758823498243" />
+                  <mssgle:LineSegment
+                    End="243.142857647672,22.017646996486" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores.Paths[Row Count Output 1]"
+          TopLeft="448.742857903121,216.717646905326">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-224.542857594454,37.164705813313"
+              Start="0,0"
+              End="-224.542857594454,29.664705813313">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.5823529066565" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14.5823529066565"
+                    Point2="0,18.5823529066565"
+                    Point3="-4,18.5823529066565" />
+                  <mssgle:LineSegment
+                    End="-220.542857594454,18.5823529066565" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-220.542857594454,18.5823529066565"
+                    Point2="-224.542857594454,18.5823529066565"
+                    Point3="-224.542857594454,22.5823529066565" />
+                  <mssgle:LineSegment
+                    End="-224.542857594454,29.664705813313" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\SRC_POS_Stores">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\SEQ_Process_POS_Stores\DFT_Extract_POS_Stores\DST_STG_Stores">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

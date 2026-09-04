@@ -1,0 +1,2818 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="8/14/2026 7:38:47 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="D5"
+  DTS:CreatorName="MCG\Abdelkhalek.Shams"
+  DTS:DTSID="{2D02D60C-7824-4F52-89E1-6FF0859FCA0F}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="17.0.1016.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="22_Load_DimCustomer"
+  DTS:PackageType="5"
+  DTS:VersionBuild="40"
+  DTS:VersionGUID="{B8EA45B4-B485-4C4E-A182-38B867490114}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[CM_DWH]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{EAD3EFB7-D78D-4060-9AF3-D4CA4589F0B6}"
+      DTS:ObjectName="CM_DWH">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=D5;Initial Catalog=NovaRetail_DWH;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{EAD3EFB7-D78D-4060-9AF3-D4CA4589F0B6}D5.NovaRetail_DWH;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[CM_SRC_POS]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{AC516D9F-9799-4086-B5EB-50FD427DE720}"
+      DTS:ObjectName="CM_SRC_POS">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=D5;Initial Catalog=NovaRetail_POS;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package-{AC516D9F-9799-4086-B5EB-50FD427DE720}D5.NovaRetail_POS;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[CM_STG]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{42059AB3-CE89-42A4-A1F4-F2E87A47FB45}"
+      DTS:ObjectName="CM_STG">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=D5;Initial Catalog=NovaRetail_Staging;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package-{42059AB3-CE89-42A4-A1F4-F2E87A47FB45}D5.NovaRetail_Staging;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{7CED28F6-7B93-4799-A4BF-6AA0DA65BCBB}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="BatchID">
+      <DTS:VariableValue
+        DTS:DataType="20">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{3B1C249D-2C2E-4629-BDB4-6BBA7EB312A4}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="ExtractedRowCount">
+      <DTS:VariableValue
+        DTS:DataType="20">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\SEQ_Load_DimCustomer"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{645AC4AC-6C7E-4D52-B959-3FF74FFA2348}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SEQ_Load_DimCustomer">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{5711A5FA-2146-46EE-8899-C484FA442079}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="DFT_Load_DimCustomer"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CMD_Expire_Customer_Type2"
+                  componentClassID="Microsoft.OLEDBCommand"
+                  contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+                  description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+                  name="CMD_Expire_Customer_Type2"
+                  usesDispositions="true"
+                  version="2">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE dbo.DimCustomer
+SET
+    IsCurrent   = 0,
+    EffectiveTo = DATEADD(SECOND, -1, GETDATE())
+WHERE CustomerKey = ?
+  AND IsCurrent = 1;</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CMD_Expire_Customer_Type2.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[CM_DWH]"
+                      connectionManagerRefId="Package.ConnectionManagers[CM_DWH]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CMD_Expire_Customer_Type2.Inputs[OLE DB Command Input]"
+                      errorOrTruncationOperation="Command Execution"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Command Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CMD_Expire_Customer_Type2.Inputs[OLE DB Command Input].Columns[DW_CustomerKey]"
+                          cachedDataType="i4"
+                          cachedName="DW_CustomerKey"
+                          externalMetadataColumnId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CMD_Expire_Customer_Type2.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_CustomerKey]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CMD_Expire_Customer_Type2.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                          dataType="i4"
+                          name="Param_0">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                              name="DBParamInfoFlags">17</property>
+                          </properties>
+                        </externalMetadataColumn>
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CMD_Expire_Customer_Type2.Outputs[OLE DB Command Output]"
+                      exclusionGroup="1"
+                      name="OLE DB Command Output"
+                      synchronousInputId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CMD_Expire_Customer_Type2.Inputs[OLE DB Command Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CMD_Expire_Customer_Type2.Outputs[OLE DB Command Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Command Error Output"
+                      synchronousInputId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CMD_Expire_Customer_Type2.Inputs[OLE DB Command Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CMD_Expire_Customer_Type2.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CMD_Expire_Customer_Type2.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CMD_Expire_Customer_Type2.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CMD_Expire_Customer_Type2.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CMD_Update_Customer_Type1"
+                  componentClassID="Microsoft.OLEDBCommand"
+                  contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+                  description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+                  name="CMD_Update_Customer_Type1"
+                  usesDispositions="true"
+                  version="2">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE dbo.DimCustomer
+SET
+    FirstName = ?,
+    LastName  = ?,
+    Gender    = ?,
+    BirthDate = ?,
+    Email     = ?,
+    Phone     = ?,
+    BatchID   = ?
+WHERE CustomerKey = ?
+  AND IsCurrent = 1;</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CMD_Update_Customer_Type1.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[CM_DWH]"
+                      connectionManagerRefId="Package.ConnectionManagers[CM_DWH]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CMD_Update_Customer_Type1.Inputs[OLE DB Command Input]"
+                      errorOrTruncationOperation="Command Execution"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Command Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CMD_Update_Customer_Type1.Inputs[OLE DB Command Input].Columns[FirstName]"
+                          cachedDataType="wstr"
+                          cachedLength="80"
+                          cachedName="FirstName"
+                          externalMetadataColumnId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CMD_Update_Customer_Type1.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[FirstName]" />
+                        <inputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CMD_Update_Customer_Type1.Inputs[OLE DB Command Input].Columns[LastName]"
+                          cachedDataType="wstr"
+                          cachedLength="80"
+                          cachedName="LastName"
+                          externalMetadataColumnId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CMD_Update_Customer_Type1.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[LastName]" />
+                        <inputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CMD_Update_Customer_Type1.Inputs[OLE DB Command Input].Columns[Gender]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="10"
+                          cachedName="Gender"
+                          externalMetadataColumnId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CMD_Update_Customer_Type1.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[Gender]" />
+                        <inputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CMD_Update_Customer_Type1.Inputs[OLE DB Command Input].Columns[BirthDate]"
+                          cachedDataType="wstr"
+                          cachedLength="10"
+                          cachedName="BirthDate"
+                          externalMetadataColumnId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CMD_Update_Customer_Type1.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[BirthDate]" />
+                        <inputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CMD_Update_Customer_Type1.Inputs[OLE DB Command Input].Columns[Email]"
+                          cachedDataType="wstr"
+                          cachedLength="200"
+                          cachedName="Email"
+                          externalMetadataColumnId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CMD_Update_Customer_Type1.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[Email]" />
+                        <inputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CMD_Update_Customer_Type1.Inputs[OLE DB Command Input].Columns[Phone]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="30"
+                          cachedName="Phone"
+                          externalMetadataColumnId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CMD_Update_Customer_Type1.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[Phone]" />
+                        <inputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CMD_Update_Customer_Type1.Inputs[OLE DB Command Input].Columns[DWHBatchID]"
+                          cachedDataType="i8"
+                          cachedName="DWHBatchID"
+                          externalMetadataColumnId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CMD_Update_Customer_Type1.Inputs[OLE DB Command Input].ExternalColumns[Param_6]"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DRV_DWH_Metadata.Outputs[Derived Column Output].Columns[DWHBatchID]" />
+                        <inputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CMD_Update_Customer_Type1.Inputs[OLE DB Command Input].Columns[DW_CustomerKey]"
+                          cachedDataType="i4"
+                          cachedName="DW_CustomerKey"
+                          externalMetadataColumnId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CMD_Update_Customer_Type1.Inputs[OLE DB Command Input].ExternalColumns[Param_7]"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_CustomerKey]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CMD_Update_Customer_Type1.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                          dataType="wstr"
+                          length="80"
+                          name="Param_0">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                              name="DBParamInfoFlags">65</property>
+                          </properties>
+                        </externalMetadataColumn>
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CMD_Update_Customer_Type1.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                          dataType="wstr"
+                          length="80"
+                          name="Param_1">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                              name="DBParamInfoFlags">65</property>
+                          </properties>
+                        </externalMetadataColumn>
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CMD_Update_Customer_Type1.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                          codePage="1252"
+                          dataType="str"
+                          length="10"
+                          name="Param_2">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                              name="DBParamInfoFlags">65</property>
+                          </properties>
+                        </externalMetadataColumn>
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CMD_Update_Customer_Type1.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                          dataType="wstr"
+                          length="10"
+                          name="Param_3">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                              name="DBParamInfoFlags">65</property>
+                          </properties>
+                        </externalMetadataColumn>
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CMD_Update_Customer_Type1.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                          dataType="wstr"
+                          length="200"
+                          name="Param_4">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                              name="DBParamInfoFlags">65</property>
+                          </properties>
+                        </externalMetadataColumn>
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CMD_Update_Customer_Type1.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
+                          codePage="1252"
+                          dataType="str"
+                          length="30"
+                          name="Param_5">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                              name="DBParamInfoFlags">65</property>
+                          </properties>
+                        </externalMetadataColumn>
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CMD_Update_Customer_Type1.Inputs[OLE DB Command Input].ExternalColumns[Param_6]"
+                          dataType="i8"
+                          name="Param_6">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                              name="DBParamInfoFlags">81</property>
+                          </properties>
+                        </externalMetadataColumn>
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CMD_Update_Customer_Type1.Inputs[OLE DB Command Input].ExternalColumns[Param_7]"
+                          dataType="i4"
+                          name="Param_7">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                              name="DBParamInfoFlags">17</property>
+                          </properties>
+                        </externalMetadataColumn>
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CMD_Update_Customer_Type1.Outputs[OLE DB Command Output]"
+                      exclusionGroup="1"
+                      name="OLE DB Command Output"
+                      synchronousInputId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CMD_Update_Customer_Type1.Inputs[OLE DB Command Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CMD_Update_Customer_Type1.Outputs[OLE DB Command Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Command Error Output"
+                      synchronousInputId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CMD_Update_Customer_Type1.Inputs[OLE DB Command Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CMD_Update_Customer_Type1.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CMD_Update_Customer_Type1.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CMD_Update_Customer_Type1.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CMD_Update_Customer_Type1.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CNT_Customers_Read"
+                  componentClassID="Microsoft.RowCount"
+                  contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
+                  name="CNT_Customers_Read">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable to hold the row count."
+                      name="VariableName">User::ExtractedRowCount</property>
+                  </properties>
+                  <inputs>
+                    <input
+                      refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CNT_Customers_Read.Inputs[Row Count Input 1]"
+                      hasSideEffects="true"
+                      name="Row Count Input 1">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CNT_Customers_Read.Outputs[Row Count Output 1]"
+                      name="Row Count Output 1"
+                      synchronousInputId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CNT_Customers_Read.Inputs[Row Count Input 1]">
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CSPL_Detect_Customer_Changes"
+                  componentClassID="Microsoft.ConditionalSplit"
+                  contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+                  name="CSPL_Detect_Customer_Changes"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CSPL_Detect_Customer_Changes.Inputs[Conditional Split Input]"
+                      description="Input to the Conditional Split Transformation"
+                      name="Conditional Split Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CSPL_Detect_Customer_Changes.Inputs[Conditional Split Input].Columns[FirstName]"
+                          cachedDataType="wstr"
+                          cachedLength="80"
+                          cachedName="FirstName"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[FirstName]" />
+                        <inputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CSPL_Detect_Customer_Changes.Inputs[Conditional Split Input].Columns[LastName]"
+                          cachedDataType="wstr"
+                          cachedLength="80"
+                          cachedName="LastName"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[LastName]" />
+                        <inputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CSPL_Detect_Customer_Changes.Inputs[Conditional Split Input].Columns[Gender]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="10"
+                          cachedName="Gender"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[Gender]" />
+                        <inputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CSPL_Detect_Customer_Changes.Inputs[Conditional Split Input].Columns[BirthDate]"
+                          cachedDataType="wstr"
+                          cachedLength="10"
+                          cachedName="BirthDate"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[BirthDate]" />
+                        <inputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CSPL_Detect_Customer_Changes.Inputs[Conditional Split Input].Columns[Email]"
+                          cachedDataType="wstr"
+                          cachedLength="200"
+                          cachedName="Email"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[Email]" />
+                        <inputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CSPL_Detect_Customer_Changes.Inputs[Conditional Split Input].Columns[Phone]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="30"
+                          cachedName="Phone"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[Phone]" />
+                        <inputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CSPL_Detect_Customer_Changes.Inputs[Conditional Split Input].Columns[City]"
+                          cachedDataType="wstr"
+                          cachedLength="80"
+                          cachedName="City"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[City]" />
+                        <inputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CSPL_Detect_Customer_Changes.Inputs[Conditional Split Input].Columns[Region]"
+                          cachedDataType="wstr"
+                          cachedLength="80"
+                          cachedName="Region"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[Region]" />
+                        <inputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CSPL_Detect_Customer_Changes.Inputs[Conditional Split Input].Columns[CustomerSegment]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="30"
+                          cachedName="CustomerSegment"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[CustomerSegment]" />
+                        <inputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CSPL_Detect_Customer_Changes.Inputs[Conditional Split Input].Columns[CustomerStatus]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="30"
+                          cachedName="CustomerStatus"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[CustomerStatus]" />
+                        <inputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CSPL_Detect_Customer_Changes.Inputs[Conditional Split Input].Columns[DW_FirstName]"
+                          cachedDataType="wstr"
+                          cachedLength="80"
+                          cachedName="DW_FirstName"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_FirstName]" />
+                        <inputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CSPL_Detect_Customer_Changes.Inputs[Conditional Split Input].Columns[DW_LastName]"
+                          cachedDataType="wstr"
+                          cachedLength="80"
+                          cachedName="DW_LastName"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_LastName]" />
+                        <inputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CSPL_Detect_Customer_Changes.Inputs[Conditional Split Input].Columns[DW_Gender]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="10"
+                          cachedName="DW_Gender"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_Gender]" />
+                        <inputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CSPL_Detect_Customer_Changes.Inputs[Conditional Split Input].Columns[DW_BirthDate]"
+                          cachedDataType="wstr"
+                          cachedLength="10"
+                          cachedName="DW_BirthDate"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_BirthDate]" />
+                        <inputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CSPL_Detect_Customer_Changes.Inputs[Conditional Split Input].Columns[DW_Email]"
+                          cachedDataType="wstr"
+                          cachedLength="200"
+                          cachedName="DW_Email"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_Email]" />
+                        <inputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CSPL_Detect_Customer_Changes.Inputs[Conditional Split Input].Columns[DW_Phone]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="30"
+                          cachedName="DW_Phone"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_Phone]" />
+                        <inputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CSPL_Detect_Customer_Changes.Inputs[Conditional Split Input].Columns[DW_City]"
+                          cachedDataType="wstr"
+                          cachedLength="80"
+                          cachedName="DW_City"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_City]" />
+                        <inputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CSPL_Detect_Customer_Changes.Inputs[Conditional Split Input].Columns[DW_Region]"
+                          cachedDataType="wstr"
+                          cachedLength="80"
+                          cachedName="DW_Region"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_Region]" />
+                        <inputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CSPL_Detect_Customer_Changes.Inputs[Conditional Split Input].Columns[DW_CustomerStatus]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="30"
+                          cachedName="DW_CustomerStatus"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_CustomerStatus]" />
+                        <inputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CSPL_Detect_Customer_Changes.Inputs[Conditional Split Input].Columns[DW_CustomerSegment]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="30"
+                          cachedName="DW_CustomerSegment"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_CustomerSegment]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CSPL_Detect_Customer_Changes.Outputs[TYPE2_CHANGED]"
+                      description="Output 1 of the Conditional Split Transformation"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      exclusionGroup="1"
+                      name="TYPE2_CHANGED"
+                      synchronousInputId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CSPL_Detect_Customer_Changes.Inputs[Conditional Split Input]"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                          name="Expression">(([ISNULL](#{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[City]}) &amp;&amp; ![ISNULL](#{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_City]})) || (![ISNULL](#{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[City]}) &amp;&amp; [ISNULL](#{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_City]})) || (![ISNULL](#{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[City]}) &amp;&amp; ![ISNULL](#{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_City]}) &amp;&amp; #{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[City]} != #{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_City]})) || (([ISNULL](#{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[Region]}) &amp;&amp; ![ISNULL](#{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_Region]})) || (![ISNULL](#{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[Region]}) &amp;&amp; [ISNULL](#{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_Region]})) || (![ISNULL](#{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[Region]}) &amp;&amp; ![ISNULL](#{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_Region]}) &amp;&amp; #{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[Region]} != #{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_Region]})) || (([ISNULL](#{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[CustomerSegment]}) &amp;&amp; ![ISNULL](#{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_CustomerSegment]})) || (![ISNULL](#{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[CustomerSegment]}) &amp;&amp; [ISNULL](#{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_CustomerSegment]})) || (![ISNULL](#{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[CustomerSegment]}) &amp;&amp; ![ISNULL](#{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_CustomerSegment]}) &amp;&amp; #{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[CustomerSegment]} != #{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_CustomerSegment]})) || (([ISNULL](#{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[CustomerStatus]}) &amp;&amp; ![ISNULL](#{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_CustomerStatus]})) || (![ISNULL](#{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[CustomerStatus]}) &amp;&amp; [ISNULL](#{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_CustomerStatus]})) || (![ISNULL](#{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[CustomerStatus]}) &amp;&amp; ![ISNULL](#{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_CustomerStatus]}) &amp;&amp; #{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[CustomerStatus]} != #{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_CustomerStatus]}))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Specifies the friendly version of the expression. This expression version uses column names."
+                          expressionType="Notify"
+                          name="FriendlyExpression">((ISNULL(City) &amp;&amp; !ISNULL(DW_City)) || (!ISNULL(City) &amp;&amp; ISNULL(DW_City)) || (!ISNULL(City) &amp;&amp; !ISNULL(DW_City) &amp;&amp; City != DW_City)) || ((ISNULL(Region) &amp;&amp; !ISNULL(DW_Region)) || (!ISNULL(Region) &amp;&amp; ISNULL(DW_Region)) || (!ISNULL(Region) &amp;&amp; !ISNULL(DW_Region) &amp;&amp; Region != DW_Region)) || ((ISNULL(CustomerSegment) &amp;&amp; !ISNULL(DW_CustomerSegment)) || (!ISNULL(CustomerSegment) &amp;&amp; ISNULL(DW_CustomerSegment)) || (!ISNULL(CustomerSegment) &amp;&amp; !ISNULL(DW_CustomerSegment) &amp;&amp; CustomerSegment != DW_CustomerSegment)) || ((ISNULL(CustomerStatus) &amp;&amp; !ISNULL(DW_CustomerStatus)) || (!ISNULL(CustomerStatus) &amp;&amp; ISNULL(DW_CustomerStatus)) || (!ISNULL(CustomerStatus) &amp;&amp; !ISNULL(DW_CustomerStatus) &amp;&amp; CustomerStatus != DW_CustomerStatus))</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                          name="EvaluationOrder">0</property>
+                      </properties>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CSPL_Detect_Customer_Changes.Outputs[TYPE1_CHANGED]"
+                      description="Output 2 of the Conditional Split Transformation"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      exclusionGroup="1"
+                      name="TYPE1_CHANGED"
+                      synchronousInputId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CSPL_Detect_Customer_Changes.Inputs[Conditional Split Input]"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                          name="Expression">(([ISNULL](#{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[FirstName]}) &amp;&amp; ![ISNULL](#{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_FirstName]})) || (![ISNULL](#{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[FirstName]}) &amp;&amp; [ISNULL](#{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_FirstName]})) || (![ISNULL](#{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[FirstName]}) &amp;&amp; ![ISNULL](#{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_FirstName]}) &amp;&amp; #{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[FirstName]} != #{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_FirstName]})) || (([ISNULL](#{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[LastName]}) &amp;&amp; ![ISNULL](#{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_LastName]})) || (![ISNULL](#{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[LastName]}) &amp;&amp; [ISNULL](#{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_LastName]})) || (![ISNULL](#{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[LastName]}) &amp;&amp; ![ISNULL](#{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_LastName]}) &amp;&amp; #{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[LastName]} != #{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_LastName]})) || (([ISNULL](#{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[Gender]}) &amp;&amp; ![ISNULL](#{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_Gender]})) || (![ISNULL](#{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[Gender]}) &amp;&amp; [ISNULL](#{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_Gender]})) || (![ISNULL](#{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[Gender]}) &amp;&amp; ![ISNULL](#{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_Gender]}) &amp;&amp; #{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[Gender]} != #{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_Gender]})) || (([ISNULL](#{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[BirthDate]}) &amp;&amp; ![ISNULL](#{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_BirthDate]})) || (![ISNULL](#{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[BirthDate]}) &amp;&amp; [ISNULL](#{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_BirthDate]})) || (![ISNULL](#{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[BirthDate]}) &amp;&amp; ![ISNULL](#{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_BirthDate]}) &amp;&amp; #{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[BirthDate]} != #{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_BirthDate]})) || (([ISNULL](#{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[Email]}) &amp;&amp; ![ISNULL](#{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_Email]})) || (![ISNULL](#{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[Email]}) &amp;&amp; [ISNULL](#{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_Email]})) || (![ISNULL](#{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[Email]}) &amp;&amp; ![ISNULL](#{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_Email]}) &amp;&amp; #{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[Email]} != #{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_Email]})) || (([ISNULL](#{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[Phone]}) &amp;&amp; ![ISNULL](#{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_Phone]})) || (![ISNULL](#{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[Phone]}) &amp;&amp; [ISNULL](#{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_Phone]})) || (![ISNULL](#{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[Phone]}) &amp;&amp; ![ISNULL](#{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_Phone]}) &amp;&amp; #{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[Phone]} != #{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_Phone]}))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Specifies the friendly version of the expression. This expression version uses column names."
+                          expressionType="Notify"
+                          name="FriendlyExpression">((ISNULL(FirstName) &amp;&amp; !ISNULL(DW_FirstName)) || (!ISNULL(FirstName) &amp;&amp; ISNULL(DW_FirstName)) || (!ISNULL(FirstName) &amp;&amp; !ISNULL(DW_FirstName) &amp;&amp; FirstName != DW_FirstName)) || ((ISNULL(LastName) &amp;&amp; !ISNULL(DW_LastName)) || (!ISNULL(LastName) &amp;&amp; ISNULL(DW_LastName)) || (!ISNULL(LastName) &amp;&amp; !ISNULL(DW_LastName) &amp;&amp; LastName != DW_LastName)) || ((ISNULL(Gender) &amp;&amp; !ISNULL(DW_Gender)) || (!ISNULL(Gender) &amp;&amp; ISNULL(DW_Gender)) || (!ISNULL(Gender) &amp;&amp; !ISNULL(DW_Gender) &amp;&amp; Gender != DW_Gender)) || ((ISNULL(BirthDate) &amp;&amp; !ISNULL(DW_BirthDate)) || (!ISNULL(BirthDate) &amp;&amp; ISNULL(DW_BirthDate)) || (!ISNULL(BirthDate) &amp;&amp; !ISNULL(DW_BirthDate) &amp;&amp; BirthDate != DW_BirthDate)) || ((ISNULL(Email) &amp;&amp; !ISNULL(DW_Email)) || (!ISNULL(Email) &amp;&amp; ISNULL(DW_Email)) || (!ISNULL(Email) &amp;&amp; !ISNULL(DW_Email) &amp;&amp; Email != DW_Email)) || ((ISNULL(Phone) &amp;&amp; !ISNULL(DW_Phone)) || (!ISNULL(Phone) &amp;&amp; ISNULL(DW_Phone)) || (!ISNULL(Phone) &amp;&amp; !ISNULL(DW_Phone) &amp;&amp; Phone != DW_Phone))</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                          name="EvaluationOrder">1</property>
+                      </properties>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CSPL_Detect_Customer_Changes.Outputs[UNCHANGED]"
+                      description="Default Output of the Conditional Split Transformation"
+                      exclusionGroup="1"
+                      name="UNCHANGED"
+                      synchronousInputId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CSPL_Detect_Customer_Changes.Inputs[Conditional Split Input]">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          name="IsDefaultOut">true</property>
+                      </properties>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CSPL_Detect_Customer_Changes.Outputs[Conditional Split Error Output]"
+                      description="Error Output of the Conditional Split Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Conditional Split Error Output"
+                      synchronousInputId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CSPL_Detect_Customer_Changes.Inputs[Conditional Split Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CSPL_Detect_Customer_Changes.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CSPL_Detect_Customer_Changes.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CSPL_Detect_Customer_Changes.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CSPL_Detect_Customer_Changes.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DRV_DWH_Metadata"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                  name="DRV_DWH_Metadata"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DRV_DWH_Metadata.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DRV_DWH_Metadata.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DRV_DWH_Metadata.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DRV_DWH_Metadata.Outputs[Derived Column Output].Columns[DWHBatchID]"
+                          dataType="i8"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DRV_DWH_Metadata.Outputs[Derived Column Output].Columns[DWHBatchID]"
+                          name="DWHBatchID"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">@[User::BatchID]</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">@[User::BatchID]</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DRV_DWH_Metadata.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DRV_DWH_Metadata.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DRV_DWH_Metadata.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DRV_DWH_Metadata.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DRV_DWH_Metadata.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DRV_DWH_Metadata.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_Customer_Type2_Version"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="DST_Insert_Customer_Type2_Version"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[DimCustomer]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_Customer_Type2_Version.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[CM_DWH]"
+                      connectionManagerRefId="Package.ConnectionManagers[CM_DWH]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_Customer_Type2_Version.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_Customer_Type2_Version.Inputs[OLE DB Destination Input].Columns[CustomerID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="10"
+                          cachedName="CustomerID"
+                          externalMetadataColumnId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_Customer_Type2_Version.Inputs[OLE DB Destination Input].ExternalColumns[CustomerID]"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[CustomerID]" />
+                        <inputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_Customer_Type2_Version.Inputs[OLE DB Destination Input].Columns[FirstName]"
+                          cachedDataType="wstr"
+                          cachedLength="80"
+                          cachedName="FirstName"
+                          externalMetadataColumnId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_Customer_Type2_Version.Inputs[OLE DB Destination Input].ExternalColumns[FirstName]"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[FirstName]" />
+                        <inputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_Customer_Type2_Version.Inputs[OLE DB Destination Input].Columns[LastName]"
+                          cachedDataType="wstr"
+                          cachedLength="80"
+                          cachedName="LastName"
+                          externalMetadataColumnId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_Customer_Type2_Version.Inputs[OLE DB Destination Input].ExternalColumns[LastName]"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[LastName]" />
+                        <inputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_Customer_Type2_Version.Inputs[OLE DB Destination Input].Columns[Gender]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="10"
+                          cachedName="Gender"
+                          externalMetadataColumnId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_Customer_Type2_Version.Inputs[OLE DB Destination Input].ExternalColumns[Gender]"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[Gender]" />
+                        <inputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_Customer_Type2_Version.Inputs[OLE DB Destination Input].Columns[BirthDate]"
+                          cachedDataType="wstr"
+                          cachedLength="10"
+                          cachedName="BirthDate"
+                          externalMetadataColumnId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_Customer_Type2_Version.Inputs[OLE DB Destination Input].ExternalColumns[BirthDate]"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[BirthDate]" />
+                        <inputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_Customer_Type2_Version.Inputs[OLE DB Destination Input].Columns[Email]"
+                          cachedDataType="wstr"
+                          cachedLength="200"
+                          cachedName="Email"
+                          externalMetadataColumnId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_Customer_Type2_Version.Inputs[OLE DB Destination Input].ExternalColumns[Email]"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[Email]" />
+                        <inputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_Customer_Type2_Version.Inputs[OLE DB Destination Input].Columns[Phone]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="30"
+                          cachedName="Phone"
+                          externalMetadataColumnId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_Customer_Type2_Version.Inputs[OLE DB Destination Input].ExternalColumns[Phone]"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[Phone]" />
+                        <inputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_Customer_Type2_Version.Inputs[OLE DB Destination Input].Columns[City]"
+                          cachedDataType="wstr"
+                          cachedLength="80"
+                          cachedName="City"
+                          externalMetadataColumnId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_Customer_Type2_Version.Inputs[OLE DB Destination Input].ExternalColumns[City]"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[City]" />
+                        <inputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_Customer_Type2_Version.Inputs[OLE DB Destination Input].Columns[Region]"
+                          cachedDataType="wstr"
+                          cachedLength="80"
+                          cachedName="Region"
+                          externalMetadataColumnId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_Customer_Type2_Version.Inputs[OLE DB Destination Input].ExternalColumns[Region]"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[Region]" />
+                        <inputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_Customer_Type2_Version.Inputs[OLE DB Destination Input].Columns[CustomerSegment]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="30"
+                          cachedName="CustomerSegment"
+                          externalMetadataColumnId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_Customer_Type2_Version.Inputs[OLE DB Destination Input].ExternalColumns[CustomerSegment]"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[CustomerSegment]" />
+                        <inputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_Customer_Type2_Version.Inputs[OLE DB Destination Input].Columns[CustomerStatus]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="30"
+                          cachedName="CustomerStatus"
+                          externalMetadataColumnId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_Customer_Type2_Version.Inputs[OLE DB Destination Input].ExternalColumns[CustomerStatus]"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[CustomerStatus]" />
+                        <inputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_Customer_Type2_Version.Inputs[OLE DB Destination Input].Columns[RegistrationDate]"
+                          cachedDataType="wstr"
+                          cachedLength="10"
+                          cachedName="RegistrationDate"
+                          externalMetadataColumnId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_Customer_Type2_Version.Inputs[OLE DB Destination Input].ExternalColumns[RegistrationDate]"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[RegistrationDate]" />
+                        <inputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_Customer_Type2_Version.Inputs[OLE DB Destination Input].Columns[DWHBatchID]"
+                          cachedDataType="i8"
+                          cachedName="DWHBatchID"
+                          externalMetadataColumnId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_Customer_Type2_Version.Inputs[OLE DB Destination Input].ExternalColumns[BatchID]"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DRV_DWH_Metadata.Outputs[Derived Column Output].Columns[DWHBatchID]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_Customer_Type2_Version.Inputs[OLE DB Destination Input].ExternalColumns[CustomerKey]"
+                          dataType="i4"
+                          name="CustomerKey" />
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_Customer_Type2_Version.Inputs[OLE DB Destination Input].ExternalColumns[CustomerID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="10"
+                          name="CustomerID" />
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_Customer_Type2_Version.Inputs[OLE DB Destination Input].ExternalColumns[FirstName]"
+                          dataType="wstr"
+                          length="80"
+                          name="FirstName" />
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_Customer_Type2_Version.Inputs[OLE DB Destination Input].ExternalColumns[LastName]"
+                          dataType="wstr"
+                          length="80"
+                          name="LastName" />
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_Customer_Type2_Version.Inputs[OLE DB Destination Input].ExternalColumns[Gender]"
+                          codePage="1252"
+                          dataType="str"
+                          length="10"
+                          name="Gender" />
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_Customer_Type2_Version.Inputs[OLE DB Destination Input].ExternalColumns[BirthDate]"
+                          dataType="wstr"
+                          length="10"
+                          name="BirthDate" />
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_Customer_Type2_Version.Inputs[OLE DB Destination Input].ExternalColumns[Email]"
+                          dataType="wstr"
+                          length="200"
+                          name="Email" />
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_Customer_Type2_Version.Inputs[OLE DB Destination Input].ExternalColumns[Phone]"
+                          codePage="1252"
+                          dataType="str"
+                          length="30"
+                          name="Phone" />
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_Customer_Type2_Version.Inputs[OLE DB Destination Input].ExternalColumns[City]"
+                          dataType="wstr"
+                          length="80"
+                          name="City" />
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_Customer_Type2_Version.Inputs[OLE DB Destination Input].ExternalColumns[Region]"
+                          dataType="wstr"
+                          length="80"
+                          name="Region" />
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_Customer_Type2_Version.Inputs[OLE DB Destination Input].ExternalColumns[CustomerSegment]"
+                          codePage="1252"
+                          dataType="str"
+                          length="30"
+                          name="CustomerSegment" />
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_Customer_Type2_Version.Inputs[OLE DB Destination Input].ExternalColumns[CustomerStatus]"
+                          codePage="1252"
+                          dataType="str"
+                          length="30"
+                          name="CustomerStatus" />
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_Customer_Type2_Version.Inputs[OLE DB Destination Input].ExternalColumns[RegistrationDate]"
+                          dataType="wstr"
+                          length="10"
+                          name="RegistrationDate" />
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_Customer_Type2_Version.Inputs[OLE DB Destination Input].ExternalColumns[EffectiveFrom]"
+                          dataType="wstr"
+                          length="19"
+                          name="EffectiveFrom" />
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_Customer_Type2_Version.Inputs[OLE DB Destination Input].ExternalColumns[EffectiveTo]"
+                          dataType="wstr"
+                          length="19"
+                          name="EffectiveTo" />
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_Customer_Type2_Version.Inputs[OLE DB Destination Input].ExternalColumns[IsCurrent]"
+                          dataType="bool"
+                          name="IsCurrent" />
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_Customer_Type2_Version.Inputs[OLE DB Destination Input].ExternalColumns[BatchID]"
+                          dataType="i8"
+                          name="BatchID" />
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_Customer_Type2_Version.Inputs[OLE DB Destination Input].ExternalColumns[CreatedAt]"
+                          dataType="wstr"
+                          length="19"
+                          name="CreatedAt" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_Customer_Type2_Version.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_Customer_Type2_Version.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_Customer_Type2_Version.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_Customer_Type2_Version.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_Customer_Type2_Version.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_Customer_Type2_Version.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_New_Customer"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="DST_Insert_New_Customer"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[DimCustomer]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_New_Customer.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[CM_DWH]"
+                      connectionManagerRefId="Package.ConnectionManagers[CM_DWH]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_New_Customer.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_New_Customer.Inputs[OLE DB Destination Input].Columns[CustomerID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="10"
+                          cachedName="CustomerID"
+                          externalMetadataColumnId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_New_Customer.Inputs[OLE DB Destination Input].ExternalColumns[CustomerID]"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[CustomerID]" />
+                        <inputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_New_Customer.Inputs[OLE DB Destination Input].Columns[FirstName]"
+                          cachedDataType="wstr"
+                          cachedLength="80"
+                          cachedName="FirstName"
+                          externalMetadataColumnId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_New_Customer.Inputs[OLE DB Destination Input].ExternalColumns[FirstName]"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[FirstName]" />
+                        <inputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_New_Customer.Inputs[OLE DB Destination Input].Columns[LastName]"
+                          cachedDataType="wstr"
+                          cachedLength="80"
+                          cachedName="LastName"
+                          externalMetadataColumnId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_New_Customer.Inputs[OLE DB Destination Input].ExternalColumns[LastName]"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[LastName]" />
+                        <inputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_New_Customer.Inputs[OLE DB Destination Input].Columns[Gender]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="10"
+                          cachedName="Gender"
+                          externalMetadataColumnId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_New_Customer.Inputs[OLE DB Destination Input].ExternalColumns[Gender]"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[Gender]" />
+                        <inputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_New_Customer.Inputs[OLE DB Destination Input].Columns[BirthDate]"
+                          cachedDataType="wstr"
+                          cachedLength="10"
+                          cachedName="BirthDate"
+                          externalMetadataColumnId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_New_Customer.Inputs[OLE DB Destination Input].ExternalColumns[BirthDate]"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[BirthDate]" />
+                        <inputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_New_Customer.Inputs[OLE DB Destination Input].Columns[Email]"
+                          cachedDataType="wstr"
+                          cachedLength="200"
+                          cachedName="Email"
+                          externalMetadataColumnId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_New_Customer.Inputs[OLE DB Destination Input].ExternalColumns[Email]"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[Email]" />
+                        <inputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_New_Customer.Inputs[OLE DB Destination Input].Columns[Phone]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="30"
+                          cachedName="Phone"
+                          externalMetadataColumnId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_New_Customer.Inputs[OLE DB Destination Input].ExternalColumns[Phone]"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[Phone]" />
+                        <inputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_New_Customer.Inputs[OLE DB Destination Input].Columns[City]"
+                          cachedDataType="wstr"
+                          cachedLength="80"
+                          cachedName="City"
+                          externalMetadataColumnId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_New_Customer.Inputs[OLE DB Destination Input].ExternalColumns[City]"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[City]" />
+                        <inputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_New_Customer.Inputs[OLE DB Destination Input].Columns[Region]"
+                          cachedDataType="wstr"
+                          cachedLength="80"
+                          cachedName="Region"
+                          externalMetadataColumnId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_New_Customer.Inputs[OLE DB Destination Input].ExternalColumns[Region]"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[Region]" />
+                        <inputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_New_Customer.Inputs[OLE DB Destination Input].Columns[CustomerSegment]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="30"
+                          cachedName="CustomerSegment"
+                          externalMetadataColumnId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_New_Customer.Inputs[OLE DB Destination Input].ExternalColumns[CustomerSegment]"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[CustomerSegment]" />
+                        <inputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_New_Customer.Inputs[OLE DB Destination Input].Columns[CustomerStatus]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="30"
+                          cachedName="CustomerStatus"
+                          externalMetadataColumnId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_New_Customer.Inputs[OLE DB Destination Input].ExternalColumns[CustomerStatus]"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[CustomerStatus]" />
+                        <inputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_New_Customer.Inputs[OLE DB Destination Input].Columns[RegistrationDate]"
+                          cachedDataType="wstr"
+                          cachedLength="10"
+                          cachedName="RegistrationDate"
+                          externalMetadataColumnId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_New_Customer.Inputs[OLE DB Destination Input].ExternalColumns[RegistrationDate]"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[RegistrationDate]" />
+                        <inputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_New_Customer.Inputs[OLE DB Destination Input].Columns[DWHBatchID]"
+                          cachedDataType="i8"
+                          cachedName="DWHBatchID"
+                          externalMetadataColumnId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_New_Customer.Inputs[OLE DB Destination Input].ExternalColumns[BatchID]"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DRV_DWH_Metadata.Outputs[Derived Column Output].Columns[DWHBatchID]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_New_Customer.Inputs[OLE DB Destination Input].ExternalColumns[CustomerKey]"
+                          dataType="i4"
+                          name="CustomerKey" />
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_New_Customer.Inputs[OLE DB Destination Input].ExternalColumns[CustomerID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="10"
+                          name="CustomerID" />
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_New_Customer.Inputs[OLE DB Destination Input].ExternalColumns[FirstName]"
+                          dataType="wstr"
+                          length="80"
+                          name="FirstName" />
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_New_Customer.Inputs[OLE DB Destination Input].ExternalColumns[LastName]"
+                          dataType="wstr"
+                          length="80"
+                          name="LastName" />
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_New_Customer.Inputs[OLE DB Destination Input].ExternalColumns[Gender]"
+                          codePage="1252"
+                          dataType="str"
+                          length="10"
+                          name="Gender" />
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_New_Customer.Inputs[OLE DB Destination Input].ExternalColumns[BirthDate]"
+                          dataType="wstr"
+                          length="10"
+                          name="BirthDate" />
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_New_Customer.Inputs[OLE DB Destination Input].ExternalColumns[Email]"
+                          dataType="wstr"
+                          length="200"
+                          name="Email" />
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_New_Customer.Inputs[OLE DB Destination Input].ExternalColumns[Phone]"
+                          codePage="1252"
+                          dataType="str"
+                          length="30"
+                          name="Phone" />
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_New_Customer.Inputs[OLE DB Destination Input].ExternalColumns[City]"
+                          dataType="wstr"
+                          length="80"
+                          name="City" />
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_New_Customer.Inputs[OLE DB Destination Input].ExternalColumns[Region]"
+                          dataType="wstr"
+                          length="80"
+                          name="Region" />
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_New_Customer.Inputs[OLE DB Destination Input].ExternalColumns[CustomerSegment]"
+                          codePage="1252"
+                          dataType="str"
+                          length="30"
+                          name="CustomerSegment" />
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_New_Customer.Inputs[OLE DB Destination Input].ExternalColumns[CustomerStatus]"
+                          codePage="1252"
+                          dataType="str"
+                          length="30"
+                          name="CustomerStatus" />
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_New_Customer.Inputs[OLE DB Destination Input].ExternalColumns[RegistrationDate]"
+                          dataType="wstr"
+                          length="10"
+                          name="RegistrationDate" />
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_New_Customer.Inputs[OLE DB Destination Input].ExternalColumns[EffectiveFrom]"
+                          dataType="wstr"
+                          length="19"
+                          name="EffectiveFrom" />
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_New_Customer.Inputs[OLE DB Destination Input].ExternalColumns[EffectiveTo]"
+                          dataType="wstr"
+                          length="19"
+                          name="EffectiveTo" />
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_New_Customer.Inputs[OLE DB Destination Input].ExternalColumns[IsCurrent]"
+                          dataType="bool"
+                          name="IsCurrent" />
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_New_Customer.Inputs[OLE DB Destination Input].ExternalColumns[BatchID]"
+                          dataType="i8"
+                          name="BatchID" />
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_New_Customer.Inputs[OLE DB Destination Input].ExternalColumns[CreatedAt]"
+                          dataType="wstr"
+                          length="19"
+                          name="CreatedAt" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_New_Customer.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_New_Customer.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_New_Customer.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_New_Customer.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_New_Customer.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_New_Customer.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer"
+                  componentClassID="Microsoft.Lookup"
+                  contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+                  description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+                  name="LKP_Current_DimCustomer"
+                  usesDispositions="true"
+                  version="6">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the SQL statement that generates the lookup table."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+    CustomerKey,
+    CustomerID,
+
+    FirstName,
+    LastName,
+    Gender,
+    BirthDate,
+    Email,
+    Phone,
+
+    City,
+    Region,
+    CustomerSegment,
+    CustomerStatus,
+
+    RegistrationDate
+FROM dbo.DimCustomer
+WHERE IsCurrent = 1
+  AND CustomerKey &lt;&gt; -1;</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                      expressionType="Notify"
+                      name="SqlCommandParam"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT
+    CustomerKey,
+    CustomerID,
+
+    FirstName,
+    LastName,
+    Gender,
+    BirthDate,
+    Email,
+    Phone,
+
+    City,
+    Region,
+    CustomerSegment,
+    CustomerStatus,
+
+    RegistrationDate
+FROM dbo.DimCustomer
+WHERE IsCurrent = 1
+  AND CustomerKey &lt;&gt; -1;) [refTable]
+where [refTable].[CustomerID] = ?</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the type of connection used to access the reference dataset."
+                      name="ConnectionType"
+                      typeConverter="LookupConnectionType">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the cache type of the lookup table."
+                      name="CacheType"
+                      typeConverter="CacheType">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                      name="NoMatchBehavior"
+                      typeConverter="LookupNoMatchBehavior">1</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                      name="NoMatchCachePercentage">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                      name="MaxMemoryUsage">25</property>
+                    <property
+                      dataType="System.Int64"
+                      description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                      name="MaxMemoryUsage64">25</property>
+                    <property
+                      dataType="System.String"
+                      description="Indicates whether to reference metadata in an XML format."
+                      name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="CustomerKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CustomerID" dataType="DT_STR" length="10" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="FirstName" dataType="DT_WSTR" length="80" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="LastName" dataType="DT_WSTR" length="80" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Gender" dataType="DT_STR" length="10" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="BirthDate" dataType="DT_WSTR" length="10" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Email" dataType="DT_WSTR" length="200" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Phone" dataType="DT_STR" length="30" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="City" dataType="DT_WSTR" length="80" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Region" dataType="DT_WSTR" length="80" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CustomerSegment" dataType="DT_STR" length="30" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="CustomerStatus" dataType="DT_STR" length="30" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="RegistrationDate" dataType="DT_WSTR" length="10" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                      name="ParameterMap">#{Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[CustomerID]};</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                      name="TreatDuplicateKeysAsError">false</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[CM_DWH]"
+                      connectionManagerRefId="Package.ConnectionManagers[CM_DWH]"
+                      description="Connection manager used to access lookup data."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Inputs[Lookup Input]"
+                      name="Lookup Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Inputs[Lookup Input].Columns[CustomerID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="10"
+                          cachedName="CustomerID"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[CustomerID]">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table that a column joins."
+                              name="JoinToReferenceColumn">CustomerID</property>
+                            <property
+                              dataType="System.Null"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn" />
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output]"
+                      errorOrTruncationOperation="Lookup"
+                      exclusionGroup="1"
+                      name="Lookup Match Output"
+                      synchronousInputId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Inputs[Lookup Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_CustomerKey]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Copy Column"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_CustomerKey]"
+                          name="DW_CustomerKey"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn">CustomerKey</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_CustomerID]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Copy Column"
+                          length="10"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_CustomerID]"
+                          name="DW_CustomerID"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn">CustomerID</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_FirstName]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Copy Column"
+                          length="80"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_FirstName]"
+                          name="DW_FirstName"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn">FirstName</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_LastName]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Copy Column"
+                          length="80"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_LastName]"
+                          name="DW_LastName"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn">LastName</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_Gender]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Copy Column"
+                          length="10"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_Gender]"
+                          name="DW_Gender"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn">Gender</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_BirthDate]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Copy Column"
+                          length="10"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_BirthDate]"
+                          name="DW_BirthDate"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn">BirthDate</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_Email]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Copy Column"
+                          length="200"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_Email]"
+                          name="DW_Email"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn">Email</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_Phone]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Copy Column"
+                          length="30"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_Phone]"
+                          name="DW_Phone"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn">Phone</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_City]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Copy Column"
+                          length="80"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_City]"
+                          name="DW_City"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn">City</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_Region]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Copy Column"
+                          length="80"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_Region]"
+                          name="DW_Region"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn">Region</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_CustomerStatus]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Copy Column"
+                          length="30"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_CustomerStatus]"
+                          name="DW_CustomerStatus"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn">CustomerStatus</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_CustomerSegment]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Copy Column"
+                          length="30"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_CustomerSegment]"
+                          name="DW_CustomerSegment"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn">CustomerSegment</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_RegistrationDate]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Copy Column"
+                          length="10"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output].Columns[DW_RegistrationDate]"
+                          name="DW_RegistrationDate"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn">RegistrationDate</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup No Match Output]"
+                      description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                      exclusionGroup="1"
+                      name="Lookup No Match Output"
+                      synchronousInputId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Inputs[Lookup Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Lookup Error Output"
+                      synchronousInputId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Inputs[Lookup Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="SRC_STG_Customers"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+    CustomerID,
+    FirstName,
+    LastName,
+    Gender,
+    BirthDate,
+    Email,
+    Phone,
+    City,
+    Region,
+    CustomerSegment,
+
+    CASE
+        WHEN IsDeleted = 1 THEN 'Deleted'
+        ELSE CustomerStatus
+    END AS CustomerStatus,
+
+    RegistrationDate
+FROM dbo.stg_Customers
+WHERE CustomerID IS NOT NULL;</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[CM_STG]"
+                      connectionManagerRefId="Package.ConnectionManagers[CM_STG]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[CustomerID]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].ExternalColumns[CustomerID]"
+                          length="10"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[CustomerID]"
+                          name="CustomerID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[FirstName]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].ExternalColumns[FirstName]"
+                          length="80"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[FirstName]"
+                          name="FirstName"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[LastName]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].ExternalColumns[LastName]"
+                          length="80"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[LastName]"
+                          name="LastName"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[Gender]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].ExternalColumns[Gender]"
+                          length="10"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[Gender]"
+                          name="Gender"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[BirthDate]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].ExternalColumns[BirthDate]"
+                          length="10"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[BirthDate]"
+                          name="BirthDate"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[Email]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].ExternalColumns[Email]"
+                          length="200"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[Email]"
+                          name="Email"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[Phone]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].ExternalColumns[Phone]"
+                          length="30"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[Phone]"
+                          name="Phone"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[City]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].ExternalColumns[City]"
+                          length="80"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[City]"
+                          name="City"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[Region]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].ExternalColumns[Region]"
+                          length="80"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[Region]"
+                          name="Region"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[CustomerSegment]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].ExternalColumns[CustomerSegment]"
+                          length="30"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[CustomerSegment]"
+                          name="CustomerSegment"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[CustomerStatus]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].ExternalColumns[CustomerStatus]"
+                          length="30"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[CustomerStatus]"
+                          name="CustomerStatus"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[RegistrationDate]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].ExternalColumns[RegistrationDate]"
+                          length="10"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].Columns[RegistrationDate]"
+                          name="RegistrationDate"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].ExternalColumns[CustomerID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="10"
+                          name="CustomerID" />
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].ExternalColumns[FirstName]"
+                          dataType="wstr"
+                          length="80"
+                          name="FirstName" />
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].ExternalColumns[LastName]"
+                          dataType="wstr"
+                          length="80"
+                          name="LastName" />
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].ExternalColumns[Gender]"
+                          codePage="1252"
+                          dataType="str"
+                          length="10"
+                          name="Gender" />
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].ExternalColumns[BirthDate]"
+                          dataType="wstr"
+                          length="10"
+                          name="BirthDate" />
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].ExternalColumns[Email]"
+                          dataType="wstr"
+                          length="200"
+                          name="Email" />
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].ExternalColumns[Phone]"
+                          codePage="1252"
+                          dataType="str"
+                          length="30"
+                          name="Phone" />
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].ExternalColumns[City]"
+                          dataType="wstr"
+                          length="80"
+                          name="City" />
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].ExternalColumns[Region]"
+                          dataType="wstr"
+                          length="80"
+                          name="Region" />
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].ExternalColumns[CustomerSegment]"
+                          codePage="1252"
+                          dataType="str"
+                          length="30"
+                          name="CustomerSegment" />
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].ExternalColumns[CustomerStatus]"
+                          codePage="1252"
+                          dataType="str"
+                          length="30"
+                          name="CustomerStatus" />
+                        <externalMetadataColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output].ExternalColumns[RegistrationDate]"
+                          dataType="wstr"
+                          length="10"
+                          name="RegistrationDate" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Error Output].Columns[CustomerID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="10"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Error Output].Columns[CustomerID]"
+                          name="CustomerID" />
+                        <outputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Error Output].Columns[FirstName]"
+                          dataType="wstr"
+                          length="80"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Error Output].Columns[FirstName]"
+                          name="FirstName" />
+                        <outputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Error Output].Columns[LastName]"
+                          dataType="wstr"
+                          length="80"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Error Output].Columns[LastName]"
+                          name="LastName" />
+                        <outputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Error Output].Columns[Gender]"
+                          codePage="1252"
+                          dataType="str"
+                          length="10"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Error Output].Columns[Gender]"
+                          name="Gender" />
+                        <outputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Error Output].Columns[BirthDate]"
+                          dataType="wstr"
+                          length="10"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Error Output].Columns[BirthDate]"
+                          name="BirthDate" />
+                        <outputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Error Output].Columns[Email]"
+                          dataType="wstr"
+                          length="200"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Error Output].Columns[Email]"
+                          name="Email" />
+                        <outputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Error Output].Columns[Phone]"
+                          codePage="1252"
+                          dataType="str"
+                          length="30"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Error Output].Columns[Phone]"
+                          name="Phone" />
+                        <outputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Error Output].Columns[City]"
+                          dataType="wstr"
+                          length="80"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Error Output].Columns[City]"
+                          name="City" />
+                        <outputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Error Output].Columns[Region]"
+                          dataType="wstr"
+                          length="80"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Error Output].Columns[Region]"
+                          name="Region" />
+                        <outputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Error Output].Columns[CustomerSegment]"
+                          codePage="1252"
+                          dataType="str"
+                          length="30"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Error Output].Columns[CustomerSegment]"
+                          name="CustomerSegment" />
+                        <outputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Error Output].Columns[CustomerStatus]"
+                          codePage="1252"
+                          dataType="str"
+                          length="30"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Error Output].Columns[CustomerStatus]"
+                          name="CustomerStatus" />
+                        <outputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Error Output].Columns[RegistrationDate]"
+                          dataType="wstr"
+                          length="10"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Error Output].Columns[RegistrationDate]"
+                          name="RegistrationDate" />
+                        <outputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer.Paths[Derived Column Output]"
+                  endId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Inputs[Lookup Input]"
+                  name="Derived Column Output"
+                  startId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DRV_DWH_Metadata.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer.Paths[Lookup Match Output]"
+                  endId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CSPL_Detect_Customer_Changes.Inputs[Conditional Split Input]"
+                  name="Lookup Match Output"
+                  startId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup Match Output]" />
+                <path
+                  refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer.Paths[Lookup No Match Output]"
+                  endId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_New_Customer.Inputs[OLE DB Destination Input]"
+                  name="Lookup No Match Output"
+                  startId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer.Outputs[Lookup No Match Output]" />
+                <path
+                  refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer.Paths[OLE DB Command Output]"
+                  endId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_Customer_Type2_Version.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Command Output"
+                  startId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CMD_Expire_Customer_Type2.Outputs[OLE DB Command Output]" />
+                <path
+                  refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer.Paths[OLE DB Source Output]"
+                  endId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CNT_Customers_Read.Inputs[Row Count Input 1]"
+                  name="OLE DB Source Output"
+                  startId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers.Outputs[OLE DB Source Output]" />
+                <path
+                  refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer.Paths[Row Count Output 1]"
+                  endId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DRV_DWH_Metadata.Inputs[Derived Column Input]"
+                  name="Row Count Output 1"
+                  startId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CNT_Customers_Read.Outputs[Row Count Output 1]" />
+                <path
+                  refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer.Paths[TYPE1_CHANGED]"
+                  endId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CMD_Update_Customer_Type1.Inputs[OLE DB Command Input]"
+                  name="TYPE1_CHANGED"
+                  startId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CSPL_Detect_Customer_Changes.Outputs[TYPE1_CHANGED]" />
+                <path
+                  refId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer.Paths[TYPE2_CHANGED]"
+                  endId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CMD_Expire_Customer_Type2.Inputs[OLE DB Command Input]"
+                  name="TYPE2_CHANGED"
+                  startId="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CSPL_Detect_Customer_Changes.Outputs[TYPE2_CHANGED]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL_End_Batch_Failed"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{3AC0DF60-3CD8-4ACE-8BD3-1FBFC69AE6E0}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL_End_Batch_Failed"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{42059AB3-CE89-42A4-A1F4-F2E87A47FB45}"
+          SQLTask:SqlStatementSource="UPDATE dbo.ETL_Batch&#xA;SET&#xA;    EndTime = GETDATE(),&#xA;    Status  = 'Failed'&#xA;WHERE BatchID = ?;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::BatchID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL_End_Batch_Success"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{096EDBD8-2D05-403E-BC2A-4C47F6ECA7E9}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL_End_Batch_Success"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{42059AB3-CE89-42A4-A1F4-F2E87A47FB45}"
+          SQLTask:SqlStatementSource="UPDATE dbo.ETL_Batch&#xA;SET&#xA;    EndTime       = GETDATE(),&#xA;    Status        = 'Success',&#xA;    ExtractedRows = ?&#xA;WHERE BatchID     = ?;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::ExtractedRowCount"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="User::BatchID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL_Start_Batch"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{D85D5E71-C2A7-46E5-82D0-2D554ACA2352}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL_Start_Batch"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{42059AB3-CE89-42A4-A1F4-F2E87A47FB45}"
+          SQLTask:SqlStatementSource="INSERT INTO dbo.ETL_Batch&#xA;(&#xA;    PackageName,&#xA;    SourceSystem,&#xA;    StartTime,&#xA;    Status&#xA;)&#xA;VALUES&#xA;(&#xA;    '22_Load_DimCustomer',&#xA;    'STAGING',&#xA;    GETDATE(),&#xA;    'Running'&#xA;);&#xA;&#xA;SELECT CAST(SCOPE_IDENTITY() AS BIGINT) AS BatchID;"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::BatchID" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{F2C782E3-266C-471A-83D7-2DDC55B3702F}"
+      DTS:From="Package\SQL_Start_Batch"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\SEQ_Load_DimCustomer" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{149FC85A-344A-4835-A397-9FB48A582784}"
+      DTS:From="Package\SEQ_Load_DimCustomer"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\SQL_End_Batch_Success" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{84990AC3-7D7A-4E06-885E-D2BBD3004656}"
+      DTS:From="Package\SEQ_Load_DimCustomer"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\SQL_End_Batch_Failed"
+      DTS:Value="1" />
+  </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{AAF7CDAF-C69C-4658-A017-274FEC70A2C1}"
+      DTS:EventID="3145773"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{2A3D8026-B304-43F8-BE8D-F7535AE340FF}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\SQL_Log_Error"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{80FA3CBE-E729-45DC-ADE9-CAA3C7AA41BB}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL_Log_Error"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{42059AB3-CE89-42A4-A1F4-F2E87A47FB45}"
+              SQLTask:SqlStatementSource="INSERT INTO dbo.ETL_Error_Log&#xA;(&#xA;    BatchID,&#xA;    PackageName,&#xA;    SourceName,&#xA;    ErrorCode,&#xA;    ErrorDescription,&#xA;    ErrorTime&#xA;)&#xA;VALUES&#xA;(&#xA;    ?,&#xA;    ?,&#xA;    ?,&#xA;    ?,&#xA;    ?,&#xA;    GETDATE()&#xA;);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::BatchID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="System::SourceName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="3"
+                SQLTask:DtsVariableName="System::ErrorCode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="4"
+                SQLTask:DtsVariableName="System::ErrorDescription"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="195.2,41.6"
+          Id="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer"
+          TopLeft="14.7857143054812,62.8529411261985" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="244,204"
+          Size="244,247.2"
+          Id="Package\SEQ_Load_DimCustomer"
+          TopLeft="229.285714773803,48.9411764276893" />
+        <NodeLayout
+          Size="186.4,41.6"
+          Id="Package\SQL_End_Batch_Failed"
+          TopLeft="542.857144012743,217.176470397872" />
+        <NodeLayout
+          Size="196,41.6"
+          Id="Package\SQL_End_Batch_Success"
+          TopLeft="530.714286844037,81.0588234583606" />
+        <NodeLayout
+          Size="157.6,41.6"
+          Id="Package\SQL_Start_Batch"
+          TopLeft="22.1428571899933,42.8235293742282" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="179.742857189993,63.6235293742282">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="49.5428575838097,108.917647053461"
+              Start="0,0"
+              End="42.0428575838097,108.917647053461">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="20.7714287919048,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="20.7714287919048,0"
+                    Point2="24.7714287919048,0"
+                    Point3="24.7714287919048,4" />
+                  <mssgle:LineSegment
+                    End="24.7714287919048,104.917647053461" />
+                  <mssgle:CubicBezierSegment
+                    Point1="24.7714287919048,104.917647053461"
+                    Point2="24.7714287919048,108.917647053461"
+                    Point3="28.7714287919048,108.917647053461" />
+                  <mssgle:LineSegment
+                    End="42.0428575838097,108.917647053461" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="473.285714773803,132.674509761023">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="57.4285720702341,-30.815686302662"
+              Start="0,0"
+              End="49.9285720702341,-30.815686302662">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="19.1930181737022,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="19.1930181737022,0"
+                    Point2="23.1930181737022,0"
+                    Point3="23.1930181737022,-4" />
+                  <mssgle:LineSegment
+                    End="23.1930181737022,-26.815686302662" />
+                  <mssgle:CubicBezierSegment
+                    Point1="23.1930181737022,-26.815686302662"
+                    Point2="23.1930181737022,-30.815686302662"
+                    Point3="27.1930181737022,-30.815686302662" />
+                  <mssgle:LineSegment
+                    End="49.9285720702341,-30.815686302662" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="473.285714773803,212.407843094356">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="69.57142923894,25.5686273035161"
+              Start="0,0"
+              End="62.07142923894,25.5686273035161">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="24.0970145093597,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="24.0970145093597,0"
+                    Point2="28.0970145093597,0"
+                    Point3="28.0970145093597,4" />
+                  <mssgle:LineSegment
+                    End="28.0970145093597,21.5686273035161" />
+                  <mssgle:CubicBezierSegment
+                    Point1="28.0970145093597,21.5686273035161"
+                    Point2="28.0970145093597,25.5686273035161"
+                    Point3="32.0970145093597,25.5686273035161" />
+                  <mssgle:LineSegment
+                    End="62.07142923894,25.5686273035161" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="12.8556668531097,-15.7490234375,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="148.8,41.6"
+          Id="Package.EventHandlers[OnError]\SQL_Log_Error"
+          TopLeft="249.99999627471,70.9999989420176" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <TaskHost
+    design-time-name="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="177.6,41.6"
+          Id="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers"
+          TopLeft="72.8571430122366,12.999999988605" />
+        <NodeLayout
+          Size="183.2,41.6"
+          Id="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CNT_Customers_Read"
+          TopLeft="287.142857754109,24.4705882138447" />
+        <EdgeLayout
+          Id="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer.Paths[OLE DB Source Output]"
+          TopLeft="250.457143012237,33.799999988605">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="36.6857147418722,11.4705882252397"
+              Start="0,0"
+              End="29.1857147418722,11.4705882252397">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="14.3428573709361,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="14.3428573709361,0"
+                    Point2="18.3428573709361,0"
+                    Point3="18.3428573709361,4" />
+                  <mssgle:LineSegment
+                    End="18.3428573709361,7.47058822523974" />
+                  <mssgle:CubicBezierSegment
+                    Point1="18.3428573709361,7.47058822523974"
+                    Point2="18.3428573709361,11.4705882252397"
+                    Point3="22.3428573709361,11.4705882252397" />
+                  <mssgle:LineSegment
+                    End="29.1857147418722,11.4705882252397" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="177.6,41.6"
+          Id="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DRV_DWH_Metadata"
+          TopLeft="505.000001075012,29.0588235039406" />
+        <EdgeLayout
+          Id="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer.Paths[Row Count Output 1]"
+          TopLeft="470.342857754109,47.5647058588926">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="34.6571433209035,0"
+              Start="0,0"
+              End="27.1571433209035,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="27.1571433209035,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="206.4,41.6"
+          Id="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer"
+          TopLeft="502.857143927594,123.117646950906" />
+        <EdgeLayout
+          Id="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer.Paths[Derived Column Output]"
+          TopLeft="593.800001075012,70.6588235039406">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="12.2571428525815,52.4588234469656"
+              Start="0,0"
+              End="12.2571428525815,44.9588234469656">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.2294117234828" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22.2294117234828"
+                    Point2="0,26.2294117234828"
+                    Point3="4,26.2294117234828" />
+                  <mssgle:LineSegment
+                    End="8.25714285258152,26.2294117234828" />
+                  <mssgle:CubicBezierSegment
+                    Point1="8.25714285258152,26.2294117234828"
+                    Point2="12.2571428525815,26.2294117234828"
+                    Point3="12.2571428525815,30.2294117234828" />
+                  <mssgle:LineSegment
+                    End="12.2571428525815,44.9588234469656" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="208.8,41.6"
+          Id="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_New_Customer"
+          TopLeft="91.4285716231989,120.823529305858" />
+        <EdgeLayout
+          Id="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer.Paths[Lookup No Match Output]"
+          TopLeft="502.857143927594,142.770588128382">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-202.628572304395,0"
+              Start="0,0"
+              End="-195.128572304395,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-195.128572304395,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-153.370672870947,5,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="235.2,41.6"
+          Id="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CSPL_Detect_Customer_Changes"
+          TopLeft="477.142858158569,198.058823355805" />
+        <EdgeLayout
+          Id="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer.Paths[Lookup Match Output]"
+          TopLeft="606.057143927594,164.717646950906">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-11.3142857690245,33.3411764048992"
+              Start="0,0"
+              End="-11.3142857690245,25.8411764048992">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,12.6705882024496" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,12.6705882024496"
+                    Point2="0,16.6705882024496"
+                    Point3="-4,16.6705882024496" />
+                  <mssgle:LineSegment
+                    End="-7.31428576902454,16.6705882024496" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-7.31428576902454,16.6705882024496"
+                    Point2="-11.3142857690245,16.6705882024496"
+                    Point3="-11.3142857690245,20.6705882024496" />
+                  <mssgle:LineSegment
+                    End="-11.3142857690245,25.8411764048992" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-53.8485296032623,21.6705882024496,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="224.8,41.6"
+          Id="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CMD_Update_Customer_Type1"
+          TopLeft="69.2857144332054,202.647058645901" />
+        <EdgeLayout
+          Id="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer.Paths[TYPE1_CHANGED]"
+          TopLeft="477.142858158569,221.152941000853">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-183.057143725364,0"
+              Start="0,0"
+              End="-175.557143725364,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-175.557143725364,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-127.690876550182,5,79.824609375,10.8671875"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="220.8,41.6"
+          Id="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\CMD_Expire_Customer_Type2"
+          TopLeft="492.1428581905,276.058823287436" />
+        <EdgeLayout
+          Id="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer.Paths[TYPE2_CHANGED]"
+          TopLeft="598.642858174535,239.658823355805">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,36.3999999316302"
+              Start="0,0"
+              End="0,28.8999999316302">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.8999999316302" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-39.9123046875,9.0066405908151,79.824609375,10.88671875"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="257.6,41.6"
+          Id="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_Customer_Type2_Version"
+          TopLeft="71.4285715806242,276.823529169118" />
+        <EdgeLayout
+          Id="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer.Paths[OLE DB Command Output]"
+          TopLeft="492.1428581905,297.241176228277">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-163.114286609876,0"
+              Start="0,0"
+              End="-155.614286609876,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-155.614286609876,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\SRC_STG_Customers">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\LKP_Current_DimCustomer">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_New_Customer">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\SEQ_Load_DimCustomer\DFT_Load_DimCustomer\DST_Insert_Customer_Type2_Version">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

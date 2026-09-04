@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="12_Load_POS_Stores_Staging"
   DTS:PackageType="5"
-  DTS:VersionBuild="32"
-  DTS:VersionGUID="{8D3E9832-86FC-418E-B95C-CBA386A2E5E1}">
+  DTS:VersionBuild="33"
+  DTS:VersionGUID="{7BEAF25B-4A3C-414B-A53F-D6483CB7F3E6}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>

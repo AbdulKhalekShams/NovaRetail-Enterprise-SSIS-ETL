@@ -1,0 +1,96 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="8/28/2026 1:46:13 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="D5"
+  DTS:CreatorName="MCG\Abdelkhalek.Shams"
+  DTS:DTSID="{26CCC44B-2C8F-479E-8135-34AE538A28A2}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="17.0.1016.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="5"
+  DTS:VersionGUID="{08384422-A6E8-4A12-80BD-DAAF3DC5E92C}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[CM_DWH]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{58D8B162-D583-4C79-988B-FD28109D0599}"
+      DTS:ObjectName="CM_DWH">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=D5;Initial Catalog=NovaRetail_DWH;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{58D8B162-D583-4C79-988B-FD28109D0599}D5.NovaRetail_DWH;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[CM_SRC_POS]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{B6E42C25-3178-43B0-A666-AB2FB7E7FEB5}"
+      DTS:ObjectName="CM_SRC_POS">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=D5;Initial Catalog=NovaRetail_POS;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{B6E42C25-3178-43B0-A666-AB2FB7E7FEB5}D5.NovaRetail_POS;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[CM_STG]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{A9FF7FD3-51D6-4FD9-A8A8-C8B586A16433}"
+      DTS:ObjectName="CM_STG">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=D5;Initial Catalog=NovaRetail_Staging;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{A9FF7FD3-51D6-4FD9-A8A8-C8B586A16433}D5.NovaRetail_Staging;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\SQL_Load_DimDate"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{25C3873C-3FAF-4847-B213-A3C1FBA541DB}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL_Load_DimDate"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{58D8B162-D583-4C79-988B-FD28109D0599}"
+          SQLTask:SqlStatementSource=";WITH DateSeries AS&#xA;(&#xA;    SELECT CAST('2023-01-01' AS DATE) AS FullDate&#xA;&#xA;    UNION ALL&#xA;&#xA;    SELECT DATEADD(DAY, 1, FullDate)&#xA;    FROM DateSeries&#xA;    WHERE FullDate &lt; '2026-12-31'&#xA;)&#xA;INSERT INTO dbo.DimDate&#xA;(&#xA;    DateKey,&#xA;    FullDate,&#xA;    DayNumber,&#xA;    DayName,&#xA;    DayOfWeek,&#xA;    WeekNumber,&#xA;    MonthNumber,&#xA;    MonthName,&#xA;    YearMonth,&#xA;    QuarterNumber,&#xA;    QuarterName,&#xA;    YearNumber,&#xA;    IsWeekend&#xA;)&#xA;SELECT&#xA;    CAST(CONVERT(CHAR(8), FullDate, 112) AS INT),&#xA;&#xA;    FullDate,&#xA;&#xA;    DAY(FullDate),&#xA;&#xA;    DATENAME(WEEKDAY, FullDate),&#xA;&#xA;    DATEPART(WEEKDAY, FullDate),&#xA;&#xA;    DATEPART(ISO_WEEK, FullDate),&#xA;&#xA;    MONTH(FullDate),&#xA;&#xA;    DATENAME(MONTH, FullDate),&#xA;&#xA;    CONVERT(CHAR(7), FullDate, 120),&#xA;&#xA;    DATEPART(QUARTER, FullDate),&#xA;&#xA;    CONCAT('Q', DATEPART(QUARTER, FullDate)),&#xA;&#xA;    YEAR(FullDate),&#xA;&#xA;    CASE&#xA;        WHEN DATENAME(WEEKDAY, FullDate)&#xA;             IN ('Saturday', 'Sunday')&#xA;        THEN 1&#xA;        ELSE 0&#xA;    END&#xA;FROM DateSeries AS d&#xA;WHERE NOT EXISTS&#xA;(&#xA;    SELECT 1&#xA;    FROM dbo.DimDate existing&#xA;    WHERE existing.DateKey =&#xA;          CAST(CONVERT(CHAR(8), d.FullDate, 112) AS INT)&#xA;)&#xA;OPTION (MAXRECURSION 0);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="172,41.6"
+          Id="Package\SQL_Load_DimDate"
+          TopLeft="240.714286226703,115.47058813408" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
